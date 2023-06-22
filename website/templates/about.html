@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block title %}About-us{% endblock %} {% block
+content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1 class="hero-title">ABOUT US</h1>
+    <img class="hero-image" src="../static/images/cover.jpg" alt="About Us" />
+  </div>
+</section>
+<section>
+  <h3 class="features-heading">Our Key Features</h3>
+  <div class="container">
+    <div class="row justify-content-center mt-4">
+      <div class="feature col-12 col-md-6 col-lg-4">
+        <div class="feature-wrapper">
+          <div class="feature-img" style="padding-bottom: 0%">
+            <picture>
+              <source
+                data-srcset="../static/images/Reliable"
+                type="../static/image/jpg"
+                srcset="../static/images/Reliable.jpg"
+              />
+              <img
+                class="lazyloaded"
+                src="../static/images/Reliable.png"
+                alt="Agents compete here"
+              />
+            </picture>
+          </div>
+          <div class="feature-box">
+            <h5 class="feature-title mbr-fonts-style display-5">
+              <strong>Reliable and Convinient</strong>
+            </h5>
+            <p class="mbr-text mbr-fonts-style display-4">
+              "We are willing to go where no one has ever been before, to try
+              what no one is trying, and trusting our experience to bear only
+              what is best for our clients."
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="feature col-12 col-md-6 col-lg-4">
+        <div class="feature-wrapper">
+          <div class="feature-img" style="padding-bottom: 0%">
+            <picture>
+              <source
+                data-srcset="../static/images/couple.jpeg"
+                type="../static/image/jpeg"
+                srcset="../static/images/couple.jpeg"
+              />
+              <img
+                class="lazyloaded"
+                src="../static/images/couple.jpeg"
+                alt="We got you covered"
+              />
+            </picture>
+          </div>
+          <div class="feature-box">
+            <h5 class="feature-title mbr-fonts-style display-5">
+              <strong>No Need to Tarmack</strong>
+            </h5>
+            <p class="mbr-text mbr-fonts-style display-4">
+              "At KODY, we bring the perfect house to you. Our platform is
+              designed to make the process of looking for your new home easier,
+              faster, and more efficient."
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="feature col-12 col-md-6 col-lg-4">
+        <div class="feature-wrapper">
+          <div class="feature-img" style="padding-bottom: 0%">
+            <picture>
+              <source
+                data-srcset="../static/images/agents.png"
+                type="../static/image/png"
+                srcset="../static/images/agents.png"
+              />
+              <img
+                class="lazyloaded"
+                src="../static/images/agents.png"
+                alt="Agents compete here"
+              />
+            </picture>
+          </div>
+          <div class="feature-box">
+            <h5 class="feature-title mbr-fonts-style display-5">
+              <strong>Letting Agents Compete here</strong>
+            </h5>
+            <p class="mbr-text mbr-fonts-style display-4">
+              "Kody give agents a platform to advertise their vacant houses. Our
+              platform attract people from different locations who are looking
+              for the best houses and apartments to make them their home. Get a
+              renters as soon as you create your listing"
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="column">
+    <a href="#" id="view-properties-button" class="cta-button"
+      >View Properties</a
+    >
+    <a href="sign_up.html" class="cta-button">Create your Listing</a>
+  </div>
+</section>
+<script src="../static/scripts/about.js"></script>
+{% endblock %}

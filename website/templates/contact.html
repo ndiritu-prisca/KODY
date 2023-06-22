@@ -1,0 +1,44 @@
+{% extends "base.html" %} {% block title %}Contact-us{% endblock %} {% block
+content %}
+<div class="wrapper">
+  <div class="title">
+    <h1>contact us form</h1>
+  </div>
+  <div class="contact-form">
+    <div class="input-fields">
+      <input
+        type="text"
+        class="input"
+        placeholder="Name"
+        value="{{ request.form['name'] }}"
+      />
+      <input
+        type="text"
+        class="input"
+        placeholder="Email Address"
+        value="{{ request.form['email'] }}"
+      />
+      <input
+        type="text"
+        class="input"
+        placeholder="Phone"
+        value="{{ request.form['phone'] }}"
+        value
+      />
+      <input
+        type="text"
+        class="input"
+        placeholder="Subject"
+        value="{{ request.form['subject'] }}"
+      />
+    </div>
+    <div class="msg">
+      <textarea
+        placeholder="Message"
+        value="{{ request.form['message'] }}"
+      ></textarea>
+      <div class="cta-button">send</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
