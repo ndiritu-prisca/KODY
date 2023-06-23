@@ -1,6 +1,8 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path, urandom
+#from flask_login import LoginManager
+
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -21,6 +23,9 @@ def create_app():
 
     create_db(app)
 
+    #login_manager = LoginManager()
+    #login_manager.init_app(app)
+
     return app
 
 def create_db(app):
@@ -28,3 +33,5 @@ def create_db(app):
         with app.app_context():
             db.create_all()
             print("created database")
+
+#app = create_app()

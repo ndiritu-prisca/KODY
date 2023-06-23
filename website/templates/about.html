@@ -101,7 +101,9 @@ content %}
     <a href="#" id="view-properties-button" class="cta-button"
       >View Properties</a
     >
-    <a href="sign_up.html" class="cta-button">Create your Listing</a>
+    <a href="{{ url_for('auth.sign_up') }}" class="cta-button"
+      >Create your Listing</a
+    >
   </div>
 </section>
 <script src="../static/scripts/about.js"></script>
