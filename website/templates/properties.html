@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Properties{% endblock %}
+
+{% block content %}
+<h1>This is the properties page</h1>
+    {% for property in properties %}
+        <div class='property'>
+            <p>{{ property['id'] }}</p>
+            <p>{{ property['name'] }}</p>
+            <p>{{ property['size'] }}</p>
+        </div>
+    {% endfor %}
+{% endblock %}
