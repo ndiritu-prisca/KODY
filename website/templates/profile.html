@@ -1,0 +1,13 @@
+{% extends 'base.html' %} {% block content %}
+<h1>Welcome, {{ current_user.name }}!</h1>
+
+<h2>Your Properties:</h2>
+<ul>
+  {% for property in user_properties %}
+  <li>
+    {{ property.name }} - Size: {{ property.size }} - Location: {{
+    property.location }}
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

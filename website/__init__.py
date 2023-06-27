@@ -1,7 +1,7 @@
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path, urandom
-#from flask_login import LoginManager
+from flask_login import LoginManager
 
 
 db = SQLAlchemy()
@@ -19,19 +19,18 @@ def create_app():
     app.register_blueprint(views, url_prefix='/')
     app.register_blueprint(auth, url_prefix='/')
 
-    from .models import User, Property
+    from .models import User
 
     create_db(app)
 
-    #login_manager = LoginManager()
-    #login_manager.init_app(app)
-
-    return app
+    login = LoginManager()
+    login.login_view = 'auth.login'
+    login.init_app(app)
+    
+    return app, login
 
 def create_db(app):
     if not path.exists('website/' + DB_NAME):
         with app.app_context():
             db.create_all()
             print("created database")
-
-#app = create_app()
