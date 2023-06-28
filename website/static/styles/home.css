@@ -1,0 +1,58 @@
+#home {
+  height: 100%; /* Ensure the HTML and body elements take up the full height of the page */
+  width: 100%;
+}
+
+.carousel {
+    height: 100%; /* Set the height of the carousel to 100% */
+    width: 100%;
+  }
+
+.container-fluid {
+    padding: 0; /* Remove default padding from the container */
+  }
+  
+  .carousel-inner {
+    height: 500px; /* Adjust the height of the carousel */
+    width: 100%;
+    margin-top: 30px;
+    margin-right: 30px;
+  }
+  
+  .carousel-item img {
+    width: 100%; /* Expand the image to fill the carousel item */
+    height: 100%; /* Maintain the aspect ratio of the image */
+    object-fit: cover; /* Crop or stretch the image to cover the entire container */
+  }
+  
+  @media (max-width: 767px) {
+    .carousel-inner {
+      height: 300px; /* Adjust the height of the carousel for smaller screens */
+    }
+  }
+  
+.carousel-item {
+    height: 77vh;
+    width: 100%;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%; /* Adjust the width of the previous and next controls */
+  height: 100%; /* Make the controls occupy the full height of the carousel */
+  opacity: 1; /* Ensure the controls are fully visible */
+  background: none; /* Remove background color */
+  z-index: 1; /* Position the controls above the images */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  transform: scale(2); /* Scale up the size of the control icons */
+}
+
+.carousel-control-prev {
+  left: -5%; /* Position the previous control to the left */
+}
+
+.carousel-control-next {
+  right: -5%; /* Position the next control to the right */
+}
