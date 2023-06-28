@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block content %}
+
+<h2>Our Agents:</h2>
+<ul>
+  {% for agent in agents %}
+  <li>{{ agent.name }} - contact: {{ agent.contact }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

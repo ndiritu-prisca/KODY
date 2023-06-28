@@ -4,7 +4,8 @@ from flask_mail import Message, Mail
 from flask_login import login_required, current_user
 from .models import Property
 from . import db
- 
+from flask import jsonify
+
 
 views = Blueprint('views', __name__)
 
@@ -29,10 +30,11 @@ def aboutUs():
 
 @views.route('/properties', methods=['GET'])
 def properties():
-    conn = get_db_connection()
-    properties = conn.execute('SELECT * FROM properties').fetchall()
-    conn.close()
-    return render_template("properties.html", properties=properties)
+    if request.method == "GET":
+        conn = get_db_connection()
+        properties = conn.execute('SELECT * FROM properties').fetchall()
+        conn.close()
+        return render_template("properties.html", properties=properties)
 
 @views.route('/agents')
 def agents():
@@ -73,23 +75,61 @@ def contactUs():
     return render_template("contact.html")
 
 
-from . import create_app
 @views.route('/profile')
 @login_required
 def profile():
-    user_properties = Property.query.filter_by(user_id=current_user.id).all()
-    print(user_properties)
-    return render_template("profile.html")
+    conn = get_db_connection()
+    user_properties = conn.execute('SELECT * FROM properties WHERE user_id = ?', (current_user.id,)).fetchall()
+    conn.close()
+    return render_template("profile.html", user_properties=user_properties)
 
-@views.route('/properties', methods=['POST'])
+@views.route('/profile/create', methods=['GET', 'POST'])
 @login_required
 def add_properties():
-    name = request.form.get('propertyName')
-    size = request.form.get('size')
-    location = request.form.get('location')        
-    property = Property(name=name, size=size, location=location, user_id=current_user.id)
-    db.session.add(property)
-    db.session.commit()
-    
-    flash('Property added successfully!', category='success')
-    return redirect(url_for('.profile'))
+    if request.method == "POST":
+        name = request.form.get('propertyName')
+        bd = request.form.get('bd')
+        location = request.form.get('location')
+        conn = get_db_connection()
+        conn.execute('INSERT INTO properties (name, bd, location, user_id) VALUES (?, ?, ?, ?)',
+                    (name, bd, location, current_user.id))
+        conn.commit()
+        conn.close()
+
+        flash('Property added successfully!', category='success')
+        return redirect(url_for(".profile"))
+    return render_template("create_properties.html")
+
+@views.route('/profile/1', methods=['GET'])
+@login_required
+def property_item():
+    conn = get_db_connection()
+    property_item = conn.execute('SELECT * FROM properties WHERE id = ?',
+                    ())
+    conn.commit()
+    conn.close()
+    return render_template("property_item.html", property_item=property_item)
+
+
+
+@views.route('/profile/<int:id>/edit', methods=['GET', 'POST'])
+@login_required
+def edit_properties(id):
+    if request.method == "POST":
+        name = request.form.get('propertyName')
+        bd = request.form.get('bd')
+        location = request.form.get('location')
+        conn = get_db_connection()
+        conn.execute('UPDATE properties SET (name, bd, location, user_id) VALUES (?, ?, ?, ?) WHERE id = ?',
+                    (name, bd, location, current_user.id, id))
+        conn.commit()
+        conn.close()
+
+        flash('Property added successfully!', category='success')
+        return redirect(url_for(".profile"))
+    conn = get_db_connection()
+    property_details = conn.execute('SELECT * FROM properties WHERE id = ?',
+                    (id))
+    conn.commit()
+    conn.close()
+    return render_template("edit_properties.html")

@@ -12,4 +12,7 @@ INSERT INTO properties (name, size) VALUES ('Mjei', 3400);
 SELECT * FROM properties;
 
 DROP TABLE users;
+DROP TABLE properties;
+SELECT * FROM properties;
+UPDATE properties SET bd = 6 WHERE id = 1;
 SELECT * FROM sqlite_master WHERE type = 'table' AND name LIKE 'users';

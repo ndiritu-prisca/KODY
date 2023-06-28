@@ -1,5 +1,6 @@
 from . import db
 from flask_login import UserMixin
+import json
 
 
 class User(db.Model, UserMixin):
@@ -24,7 +25,33 @@ class User(db.Model, UserMixin):
 
     def is_anonymous(self):
         return False
+
+    def to_json(self):
+        return {
+            'id': self.id,
+            'name': self.name,
+            'email': self.email,
+            'contact': self.contact,
+            'password': self.password
+        }
+
+    def __str__(self):
+        return json.dumps(self.to_json())
+
+    @classmethod
+    def from_json(cls, json_data):
+        user_data = json.loads(json_data)
+        user = cls()
+        user.id = user_data['id']
+        user.name = user_data['name']
+        user.email = user_data['email']
+        user.contact = user_data['contact']
+        user.password = user_data['password']
+        return user
+
     
+
+
 class Property(db.Model, UserMixin):
     __tablename__ = 'properties' 
 

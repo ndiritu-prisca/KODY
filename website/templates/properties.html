@@ -1,17 +1,4 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Properties</h1>
-<form action="{{ url_for('.add_properties') }}" method="POST">
-  <label for="propertyName">Property Name:</label>
-  <input type="text" name="propertyName" id="propertyName" required />
-  <br />
-  <label for="size">Size:</label>
-  <input type="number" name="size" id="size" required />
-  <br />
-  <label for="location">Location:</label>
-  <input type="text" name="location" id="location" required />
-  <br />
-  <input type="submit" value="Add Property" />
-</form>
 
 <h2>Existing Properties:</h2>
 <ul>

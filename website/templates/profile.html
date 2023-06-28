@@ -4,10 +4,9 @@
 <h2>Your Properties:</h2>
 <ul>
   {% for property in user_properties %}
-  <li>
-    {{ property.name }} - Size: {{ property.size }} - Location: {{
-    property.location }}
-  </li>
+  <li>{{ property.name }}</li>
+  <li>Bedroom(s): {{ property.bd }}</li>
+  <li>Location: {{ property.location }}</li>
   {% endfor %}
 </ul>
 {% endblock %}

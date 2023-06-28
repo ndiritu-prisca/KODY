@@ -2,7 +2,7 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path, urandom
 from flask_login import LoginManager
-
+from flask import jsonify
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -26,8 +26,30 @@ def create_app():
     login = LoginManager()
     login.login_view = 'auth.login'
     login.init_app(app)
-    
-    return app, login
+
+    from .views import get_db_connection
+    @login.user_loader
+    def load_user(user_id):
+        userId = int(user_id)
+        #user = User.query.get(userId)
+        conn = get_db_connection()
+        user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,))
+        row = user.fetchone()
+        if row is None:
+            flash('No user.', category='error')
+        else:
+            result_dict = dict(zip(row.keys(), row))
+            print(result_dict)
+            user = User()
+            user.id = result_dict['id']
+            user.name = result_dict['name']
+            user.email = result_dict['email']
+            user.contact = result_dict['contact']
+            user.password = result_dict['password']
+        conn.close()
+        return user
+
+    return app
 
 def create_db(app):
     if not path.exists('website/' + DB_NAME):

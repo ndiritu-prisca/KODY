@@ -31,16 +31,9 @@ def login():
             user.password = result_dict['password']
  
             if check_password_hash(result_dict['password'], password):
-                flash('Logged in successfully!', category='success')
-
                 login_user(user, remember=True)
-                from . import create_app
-                app, login = create_app()
-                @login.user_loader
-                def load_user(id):
-                    return User.query.get(int(id))
-                
-                flash(current_user.is_authenticated)
+                flash('Logged in successfully!', category='success')               
+                flash(current_user.is_authenticated())
                 return redirect(url_for('views.profile'))
             else:
                 flash('Incorrect password, try again.', category='error')
@@ -119,6 +112,9 @@ def add_user(agency_name, email, contact, password1, password2):
         if row:
             conn.execute('CREATE TABLE IF NOT EXISTS properties ('
             'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+            'name STRING(150),'
+            'bd INTERGER,'
+            'location STRING(150),'
             'user_id INTEGER,'
             'FOREIGN KEY (user_id) REFERENCES users (id)'
             ');'
