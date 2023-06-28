@@ -13,7 +13,6 @@ class User(db.Model, UserMixin):
     password = db.Column(db.String(150))
     properties = db.relationship('Property')
 
-
     def get_id(self):
         return str(self.id)
 
@@ -49,7 +48,6 @@ class User(db.Model, UserMixin):
         user.password = user_data['password']
         return user
 
-    
 
 
 class Property(db.Model, UserMixin):
@@ -57,12 +55,21 @@ class Property(db.Model, UserMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(150))
-    size = db.Column(db.Integer)
+    bd = db.Column(db.Integer)
     location = db.Column(db.String(150))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    images = db.relationship('Image', backref='property')
 
-    def __init__(self, name, size, location, user_id):
+    def __init__(self, name, bd, location, user_id, images):
         self.name = name
-        self.size = size
+        self.bd = bd
         self.location = location
         self.user_id = user_id
+        self.images = images
+    
+class Image(db.Model, UserMixin):
+    __tablename__ = 'images'
+
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(150))
+    property_id = db.Column(db.Integer, db.ForeignKey('properties.id'))

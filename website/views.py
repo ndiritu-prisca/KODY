@@ -2,14 +2,14 @@ from flask import Blueprint, render_template, flash, redirect, request, current_
 import sqlite3
 from flask_mail import Message, Mail
 from flask_login import login_required, current_user
-from .models import Property
 from . import db
-from flask import jsonify
-
+import os
+from werkzeug.utils import secure_filename
 
 views = Blueprint('views', __name__)
 
 mail = Mail()
+UPLOAD_FOLDER = 'website/uploads'
 
 
 def get_db_connection():
@@ -91,15 +91,49 @@ def add_properties():
         bd = request.form.get('bd')
         location = request.form.get('location')
         conn = get_db_connection()
-        conn.execute('INSERT INTO properties (name, bd, location, user_id) VALUES (?, ?, ?, ?)',
+        created_property = conn.execute('INSERT INTO properties (name, bd, location, user_id) VALUES (?, ?, ?, ?)',
                     (name, bd, location, current_user.id))
+        property_id = created_property.lastrowid
+        print(property_id)
         conn.commit()
         conn.close()
 
         flash('Property added successfully!', category='success')
-        return redirect(url_for(".profile"))
+        flash('upload property images!', category='request')
+        #return redirect(url_for("upload.html"))
     return render_template("create_properties.html")
 
+@views.route('/upload', methods=['GET', 'POST'])
+def upload_image():
+    file = request.files['image']
+
+    # Save the image to a folder on your server
+    filename = secure_filename(file.filename)
+    file.save(os.path.join(views.config['UPLOAD_FOLDER'], filename))
+
+    # Create a new Image instance and associate it with the property
+    conn = get_db_connection()
+    conn.execute(
+        'INSERT INTO images (filename, property_id) VALUES (?, ?)',
+        (filename, property_id)
+    )
+    conn.commit()
+    conn.close()
+
+    return render_template("upload.html")
+
+@views.route('/profile/<id>/images', methods=['GET'])
+def get_property_images(id):
+    conn = get_db_connection()
+    images = conn.execute(
+        'SELECT * FROM images WHERE property_id = ?',
+        (id,)
+    ).fetchall()
+    conn.close()
+
+    # Process the images or return them as a response
+
+    return 'Property images retrieved'
 
 @views.route('/profile/<id>/edit', methods=['GET', 'POST'])
 @login_required

@@ -119,6 +119,13 @@ def add_user(agency_name, email, contact, password1, password2):
             'FOREIGN KEY (user_id) REFERENCES users (id)'
             ');'
         )
+            conn.execute('CREATE TABLE IF NOT EXISTS images ('
+            'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+            'filename STRING(150),'
+            'property_id INTEGER,'
+            'FOREIGN KEY (property_id) REFERENCES properties (id)'
+            ');'
+        )
         else:
             flash("User does not exist.", category='error')
 

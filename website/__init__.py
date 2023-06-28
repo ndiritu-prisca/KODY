@@ -39,7 +39,6 @@ def create_app():
             flash('No user.', category='error')
         else:
             result_dict = dict(zip(row.keys(), row))
-            print(result_dict)
             user = User()
             user.id = result_dict['id']
             user.name = result_dict['name']
