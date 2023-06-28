@@ -36,7 +36,7 @@ def login():
             else:
                 flash('Incorrect password, try again.', category='error')
         conn.close()
-    return render_template("login.html", user=current_user)
+    return render_template("login.html")
     
 @auth.route('/logout')
 @login_required
