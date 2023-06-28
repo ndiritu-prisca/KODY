@@ -100,19 +100,8 @@ def add_properties():
         return redirect(url_for(".profile"))
     return render_template("create_properties.html")
 
-@views.route('/profile/1', methods=['GET'])
-@login_required
-def property_item():
-    conn = get_db_connection()
-    property_item = conn.execute('SELECT * FROM properties WHERE id = ?',
-                    ())
-    conn.commit()
-    conn.close()
-    return render_template("property_item.html", property_item=property_item)
 
-
-
-@views.route('/profile/<int:id>/edit', methods=['GET', 'POST'])
+@views.route('/profile/<id>/edit', methods=['GET', 'POST'])
 @login_required
 def edit_properties(id):
     if request.method == "POST":
@@ -120,16 +109,30 @@ def edit_properties(id):
         bd = request.form.get('bd')
         location = request.form.get('location')
         conn = get_db_connection()
-        conn.execute('UPDATE properties SET (name, bd, location, user_id) VALUES (?, ?, ?, ?) WHERE id = ?',
-                    (name, bd, location, current_user.id, id))
+        conn.execute('UPDATE properties SET name = ?, bd = ?, location = ?, user_id = ? WHERE id = ?',
+              (name, bd, location, current_user.id, id))
         conn.commit()
         conn.close()
 
-        flash('Property added successfully!', category='success')
+        flash('Property edited successfully!', category='success')
         return redirect(url_for(".profile"))
     conn = get_db_connection()
-    property_details = conn.execute('SELECT * FROM properties WHERE id = ?',
+    dataobj = conn.execute('SELECT * FROM properties WHERE id = ?',
+                    (id)).fetchone()
+    
+    data = dict(zip(dataobj.keys(), dataobj))
+    conn.commit()
+    conn.close()
+    return render_template("edit_properties.html", data=data)
+
+@views.route('/profile/<id>/delete', methods=['GET', 'POST'])
+@login_required
+def delete_properties(id):
+    conn = get_db_connection()
+    conn.execute('DELETE FROM properties WHERE id = ?',
                     (id))
     conn.commit()
     conn.close()
-    return render_template("edit_properties.html")
+
+    flash('Property deleted successfully!', category='success')
+    return redirect(url_for(".profile"))

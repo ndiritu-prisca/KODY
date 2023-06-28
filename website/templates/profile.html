@@ -7,6 +7,16 @@
   <li>{{ property.name }}</li>
   <li>Bedroom(s): {{ property.bd }}</li>
   <li>Location: {{ property.location }}</li>
+  <span style="font-size: 24px; color: green">
+    <a href="/profile/{{property.id}}/edit">
+      <i class="bi bi-pencil-fill"></i
+    ></a>
+  </span>
+  <span style="font-size: 24px; color: rgba(223, 46, 46, 0.998)">
+    <a href="/profile/{{property.id}}/delete">
+      <i class="bi bi-trash-fill"></i
+    ></a>
+  </span>
   {% endfor %}
 </ul>
-{% endblock %}
+{%endblock %}
