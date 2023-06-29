@@ -58,7 +58,7 @@ class Property(db.Model, UserMixin):
     bd = db.Column(db.Integer)
     location = db.Column(db.String(150))
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
-    images = db.relationship('Image', backref='property')
+    images = db.relationship('Image', backref='property', cascade='all, delete')
 
     def __init__(self, name, bd, location, user_id, images):
         self.name = name

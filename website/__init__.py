@@ -6,7 +6,7 @@ from flask import jsonify
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
-UPLOAD_FOLDER = 'website/uploads/'
+UPLOAD_FOLDER = 'website/static/uploads/'
 
 def create_app():
     app = Flask(__name__)

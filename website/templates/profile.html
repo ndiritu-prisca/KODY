@@ -3,12 +3,17 @@
 
 <h2>Your Properties:</h2>
 <ul>
-  {% for property in user_properties %} {% for filename in property.images %}
-  <!-- Iterate over the property images -->
-  <li>{{ filename }}</li>
-  <li><img src="website/uploads + {{ filename }}" alt="Property Image" /></li>
-  <!-- Display each image -->
-  {% endfor %}
+  {% for property in user_properties %}
+  <!-- Retrieve the images for the current property -->
+  {% set property_images = files[property.id] %}
+  
+  <!-- Iterate through the images and display them -->
+  <ul>
+    {% for image in property_images %}
+      <li>{{ image }}</li>
+      <li><img src="../static/uploads/{{ image }}" alt="Image"></li>
+    {% endfor %}
+  </ul>
   <li>{{ property.name }}</li>
   <li>Bedroom(s): {{ property.bd }}</li>
   <li>Location: {{ property.location }}</li>
@@ -24,4 +29,4 @@
   </span>
   {% endfor %}
 </ul>
-{%endblock %}
+{% endblock %}

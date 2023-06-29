@@ -70,9 +70,11 @@ def sign_up():
             if row is not None:
                 flash('Email already exists.', category='error')
             else:
-                add_user(agency_name, email, contact, password1, password2)
+                if add_user(agency_name, email, contact, password1, password2):
+                    return redirect(url_for('auth.login'))
         else:
-            add_user(agency_name, email, contact, password1, password2)
+            if add_user(agency_name, email, contact, password1, password2):
+                return redirect(url_for('auth.login'))
             
     return render_template("sign_up.html")
 
@@ -105,7 +107,6 @@ def add_user(agency_name, email, contact, password1, password2):
 
         flash('Account created successfully!', category='success')
 
-        
         table = conn.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name='users';")
         row = table.fetchone() is not None
         
@@ -123,14 +124,10 @@ def add_user(agency_name, email, contact, password1, password2):
             'id INTEGER PRIMARY KEY AUTOINCREMENT,'
             'filename STRING(150),'
             'property_id INTEGER,'
-            'FOREIGN KEY (property_id) REFERENCES properties (id)'
+            'FOREIGN KEY (property_id) REFERENCES properties (id) ON DELETE CASCADE'
             ');'
         )
-        else:
-            flash("User does not exist.", category='error')
-
         conn.commit()            
         conn.close()
-        
-        return redirect(url_for('.login'))
-    return redirect(url_for('.sign_up'))
+        return True
+    return False

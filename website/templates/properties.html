@@ -1,4 +1,4 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} Properties {% block content %}
 
 <h2>Existing Properties:</h2>
 <ul>
@@ -8,5 +8,33 @@
     property.location }}
   </li>
   {% endfor %}
+  <ul>
+    {% for property in user_properties %}
+    <!-- Retrieve the images for the current property -->
+    {% set property_images = files[property.id] %}
+    
+    <!-- Iterate through the images and display them -->
+    <ul>
+      {% for image in property_images %}
+        <li>{{ image }}</li>
+        <li><img src="../static/uploads/{{ image }}" alt="Image"></li>
+      {% endfor %}
+    </ul>
+    <li>{{ property.name }}</li>
+    <li>Bedroom(s): {{ property.bd }}</li>
+    <li>Location: {{ property.location }}</li>
+    <span style="font-size: 24px; color: green">
+      <a href="/profile/{{property.id}}/edit">
+        <i class="bi bi-pencil-fill"></i
+      ></a>
+    </span>
+    <span style="font-size: 24px; color: rgba(223, 46, 46, 0.998)">
+      <a href="/profile/{{property.id}}/delete">
+        <i class="bi bi-trash-fill"></i
+      ></a>
+    </span>
+    {% endfor %}
+  </ul>
+  {% endblock %}
 </ul>
 {% endblock %}

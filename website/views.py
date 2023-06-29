@@ -47,6 +47,26 @@ def agents():
     conn.close()
     return render_template("agents.html", agents=agents)
 
+@views.route('/agent/<id>')
+def agent(id):
+    conn = get_db_connection()
+    agent_properties = conn.execute('SELECT * FROM properties WHERE user_id = ?', (id,)).fetchall()
+    file_dict = {}
+    # Iterate through each row in user_properties
+    for row in agent_properties:
+        property_id = row['id']
+    
+        # Retrieve filenames from the images table for the current property_id
+        images = conn.execute('SELECT filename FROM images WHERE property_id = ?', (property_id,)).fetchall()
+    
+        # Extract the filenames from the result set
+        filenames = [image['filename'] for image in images]
+    
+        # Assign the filenames to the property_id in the dictionary
+        file_dict[property_id] = filenames
+
+    conn.close()
+    return render_template("agent_properties.html", agent_properties=agent_properties, files=file_dict)
 
 @views.route('/contactUs', methods=['GET', 'POST'])
 def contactUs():
@@ -83,9 +103,23 @@ def contactUs():
 @login_required
 def profile():
     conn = get_db_connection()
-    user_properties = conn.execute('SELECT * FROM properties WHERE user_id = ?', (current_user.id,)).fetchall()    
+    user_properties = conn.execute('SELECT * FROM properties WHERE user_id = ?', (current_user.id,)).fetchall()
+    file_dict = {}
+    # Iterate through each row in user_properties
+    for row in user_properties:
+        property_id = row['id']
+    
+        # Retrieve filenames from the images table for the current property_id
+        images = conn.execute('SELECT filename FROM images WHERE property_id = ?', (property_id,)).fetchall()
+    
+        # Extract the filenames from the result set
+        filenames = [image['filename'] for image in images]
+    
+        # Assign the filenames to the property_id in the dictionary
+        file_dict[property_id] = filenames
+
     conn.close()
-    return render_template("profile.html", user_properties=user_properties)
+    return render_template("profile.html", user_properties=user_properties, files=file_dict)
 
 @views.route('/profile/create', methods=['GET', 'POST'])
 @login_required
@@ -110,51 +144,28 @@ def add_properties():
 @views.route('/upload/<property_id>', methods=['GET', 'POST'])
 def upload_image(property_id):
     if request.method == 'POST':
-        if 'file' not in request.files:
-            flash("The image must be either 'png', 'jpg', or 'jpeg'")
-            return redirect(request.url)
-        file = request.files['image']
-        
-        if file and allowed_file(file.filename):
-            # Save the image to a folder on your server
-            filename = secure_filename(file.filename)
-            from . import create_app
-            app = create_app()
-            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+        if 'images[]' not in request.files:
+            flash("No image(s) uploaded. Image must be 'png', 'jpg', or 'jpeg'")
+        files = request.files.getlist('images[]')
 
-            # Create a new Image instance and associate it with the property
-            conn = get_db_connection()
-            conn.execute(
-                'INSERT INTO images (filename, property_id) VALUES (?, ?)',
-                (filename, property_id)
-            )
-            conn.commit()
-            conn.close()
-            return redirect(url_for("views.profile"))
+        for file in files:
+            if file and allowed_file(file.filename):
+                # Save the image to a folder on your server
+                filename = secure_filename(file.filename)
+                from . import create_app
+                app = create_app()
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+                # Create a new Image instance and associate it with the property
+                conn = get_db_connection()
+                conn.execute(
+                    'INSERT INTO images (filename, property_id) VALUES (?, ?)',
+                    (filename, property_id)
+                )
+                conn.commit()
+                conn.close()
+        return redirect(url_for("views.profile"))
     return render_template("upload.html", property_id=property_id)
-
-@views.route('/display/<filename>')
-def display(filename):
-    from . import create_app
-    app = create_app()
-    return send_from_directory(app.config['UPLOAD_FOLDER'], filename=filename)
-
-# @views.route('/profile/<id>/images', methods=['GET'])
-# def get_property_images(id):
-#     conn = get_db_connection()
-#     property_id = id
-#     images = conn.execute('SELECT filename FROM images WHERE property_id = ?', (property_id,)).fetchall()
-#     images_list = [image['filename'] for image in images]
-#     for image in images_list:
-#         file_url = url_for('views.display', filename=image)
-#         print(file_url)
-#     conn.close()
-#     return render_template("images.html", filenames=filenames)
-
-# @views.route('/display/<filenames', method=['GET'])
-# def display(filenames):
-#     for filename in filenames:
-#         return redirect(url_for("website", filename='upload/' + filename), code=301)
 
 @views.route('/profile/<id>/edit', methods=['GET', 'POST'])
 @login_required
@@ -185,7 +196,7 @@ def edit_properties(id):
 def delete_properties(id):
     conn = get_db_connection()
     conn.execute('DELETE FROM properties WHERE id = ?',
-                    (id))
+                    (id,))
     conn.commit()
     conn.close()
 
