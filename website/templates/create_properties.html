@@ -12,10 +12,4 @@
   <br />
   <input type="submit" value="Add Property" />
 </form>
-<h1>Upload Image</h1>
-<form action="/upload" method="POST" enctype="multipart/form-data">
-  <input type="hidden" name="property_id" value="{{ property_id }}" />
-  <input type="file" name="image" accept="image/*" />
-  <button type="submit">Upload</button>
-</form>
 {% endblock %}

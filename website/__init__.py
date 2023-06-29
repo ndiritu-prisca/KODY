@@ -6,11 +6,13 @@ from flask import jsonify
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
+UPLOAD_FOLDER = 'website/uploads/'
 
 def create_app():
     app = Flask(__name__)
     app.config['SECRET_KEY'] = urandom(24)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(DB_NAME)
+    app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     db.init_app(app)
 
     from .views import views

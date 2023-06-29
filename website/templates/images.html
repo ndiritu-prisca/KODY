@@ -1,0 +1,8 @@
+{% for filename in filenames %}
+<li>
+  <img
+    src="{{ url_for('website', filename='uploads/' + filename) }}"
+    alt="Image"
+  />
+</li>
+{% endfor %}

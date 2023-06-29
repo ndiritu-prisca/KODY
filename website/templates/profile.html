@@ -3,7 +3,12 @@
 
 <h2>Your Properties:</h2>
 <ul>
-  {% for property in user_properties %}
+  {% for property in user_properties %} {% for filename in property.images %}
+  <!-- Iterate over the property images -->
+  <li>{{ filename }}</li>
+  <li><img src="website/uploads + {{ filename }}" alt="Property Image" /></li>
+  <!-- Display each image -->
+  {% endfor %}
   <li>{{ property.name }}</li>
   <li>Bedroom(s): {{ property.bd }}</li>
   <li>Location: {{ property.location }}</li>
