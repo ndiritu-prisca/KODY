@@ -37,8 +37,21 @@ def properties():
     if request.method == "GET":
         conn = get_db_connection()
         properties = conn.execute('SELECT * FROM properties').fetchall()
+        file_dict = {}
+        # Iterate through each row in user_properties
+        for row in properties:
+            property_id = row['id']
+    
+            # Retrieve filenames from the images table for the current property_id
+            images = conn.execute('SELECT filename FROM images WHERE property_id = ?', (property_id,)).fetchall()
+        
+            # Extract the filenames from the result set
+            filenames = [image['filename'] for image in images]
+        
+            # Assign the filenames to the property_id in the dictionary
+            file_dict[property_id] = filenames  
         conn.close()
-        return render_template("properties.html", properties=properties)
+        return render_template("properties.html", properties=properties, files=file_dict)
 
 @views.route('/agents')
 def agents():
@@ -51,6 +64,7 @@ def agents():
 def agent(id):
     conn = get_db_connection()
     agent_properties = conn.execute('SELECT * FROM properties WHERE user_id = ?', (id,)).fetchall()
+    agent = conn.execute('SELECT * FROM users WHERE id = ?', (id,)).fetchone()
     file_dict = {}
     # Iterate through each row in user_properties
     for row in agent_properties:
@@ -66,7 +80,7 @@ def agent(id):
         file_dict[property_id] = filenames
 
     conn.close()
-    return render_template("agent_properties.html", agent_properties=agent_properties, files=file_dict)
+    return render_template("agent_properties.html", agent_properties=agent_properties, files=file_dict, agent=agent)
 
 @views.route('/contactUs', methods=['GET', 'POST'])
 def contactUs():
@@ -99,9 +113,22 @@ def contactUs():
     return render_template("contact.html")
 
 
-@views.route('/profile')
+@views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
+    if request.method == 'POST':
+        description = request.form.get('description')
+        conn = get_db_connection()
+        desc = conn.execute('SELECT * FROM bios WHERE user_id = ?', (current_user.id,)).fetchone()
+        if desc is not None:
+                conn.execute('UPDATE bios SET description = ? WHERE user_id = ?', (description, current_user.id))
+        else:
+            conn.execute(
+                'INSERT INTO bios (description, user_id) VALUES (?, ?)',
+                (description, current_user.id)
+            )
+        conn.commit()
+        conn.close()
     conn = get_db_connection()
     user_properties = conn.execute('SELECT * FROM properties WHERE user_id = ?', (current_user.id,)).fetchall()
     file_dict = {}
@@ -118,8 +145,9 @@ def profile():
         # Assign the filenames to the property_id in the dictionary
         file_dict[property_id] = filenames
 
+    profile_pic = conn.execute('SELECT * FROM bios WHERE user_id = ?', (current_user.id,)).fetchone()
     conn.close()
-    return render_template("profile.html", user_properties=user_properties, files=file_dict)
+    return render_template("profile.html", user_properties=user_properties, files=file_dict, pic=profile_pic)
 
 @views.route('/profile/create', methods=['GET', 'POST'])
 @login_required
@@ -202,3 +230,32 @@ def delete_properties(id):
 
     flash('Property deleted successfully!', category='success')
     return redirect(url_for(".profile"))
+
+@views.route('/upload_pic/<id>', methods=['GET', 'POST'])
+@login_required
+def upload_pic(id):
+    if request.method == 'POST':
+        if 'image' not in request.files:
+            flash("No image uploaded. Image must be 'png', 'jpg', or 'jpeg'")
+        file = request.files['image']
+
+        if file and allowed_file(file.filename):
+            # Save the image to a folder on your server
+            filename = secure_filename(file.filename)
+            from . import create_app
+            app = create_app()
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+
+            # Create a new Image instance and associate it with the property
+            conn = get_db_connection()
+            profile_pic = conn.execute('SELECT * FROM bios WHERE user_id = ?', (current_user.id,)).fetchone()
+            if profile_pic is not None:
+                conn.execute('UPDATE bios SET filename = ? WHERE user_id = ?', (filename, current_user.id))
+            else:
+                conn.execute(
+                    'INSERT INTO bios (filename, user_id) VALUES (?, ?)',
+                    (filename, id)
+                )
+            conn.commit()
+            conn.close()
+    return redirect(url_for("views.profile"))

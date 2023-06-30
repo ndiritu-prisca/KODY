@@ -12,6 +12,7 @@ class User(db.Model, UserMixin):
     contact = db.Column(db.Integer, unique=True)
     password = db.Column(db.String(150))
     properties = db.relationship('Property')
+    bios = db.relationship('Bio')
 
     def get_id(self):
         return str(self.id)
@@ -57,6 +58,7 @@ class Property(db.Model, UserMixin):
     name = db.Column(db.String(150))
     bd = db.Column(db.Integer)
     location = db.Column(db.String(150))
+    price = db.Column(db.Integer)
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     images = db.relationship('Image', backref='property', cascade='all, delete')
 
@@ -73,3 +75,11 @@ class Image(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     filename = db.Column(db.String(150))
     property_id = db.Column(db.Integer, db.ForeignKey('properties.id'))
+
+class Bio(db.Model, UserMixin):
+    __tablename__ = 'bios'
+
+    id = db.Column(db.Integer, primary_key=True)
+    filename = db.Column(db.String(150))
+    description = db.Column(db.Text)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))

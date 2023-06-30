@@ -13,7 +13,9 @@ SELECT * FROM properties;
 
 DROP TABLE users;
 DROP TABLE properties;
+DROP TABLE images;
 SELECT * FROM properties;
 SELECT * FROM images;
+SELECT * FROM bios;
 UPDATE properties SET bd = 6 WHERE id = 1;
 SELECT * FROM sqlite_master WHERE type = 'table' AND name LIKE 'users';

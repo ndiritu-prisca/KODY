@@ -1,9 +1,31 @@
-{% extends 'base.html' %} {% block content %}
+{% extends 'base.html' %} 
+{% block title %}Our Agents{% endblock %}
+
+{% block content %}
 
 <h2>Our Agents:</h2>
-<ul>
+<div>
   {% for agent in agents %}
-  <li>{{ agent.name }} - contact: {{ agent.contact }}</li>
+  <div>
+    <li><a href="/agent/{{ agent.id }}">{{ agent.name }}</a></li>
+    <li>Contact: {{ agent.contact }}</li>
+    <ul>
+      <!-- {% for property in user_properties %} -->
+      <!-- Retrieve the images for the current property -->
+      <!-- {% set property_images = files[property.id] %} -->
+    
+      <!-- Iterate through the images and display them -->
+      <!-- {% for image in property_images %}
+        <li><img src="../static/uploads/{{ image }}" alt="Image"></li>
+      {% endfor %}
+      <li>{{ property.name }}</li>
+      <li>Bedroom(s): {{ property.bd }}</li>
+      <li>Location: {{ property.location }}</li>
+      <li>{{ agent.name }} - contact: {{ agent.contact }}</li>
+      {% endfor %} -->
+    </ul>
+  </div>
   {% endfor %}
-</ul>
+
+</div>
 {% endblock %}

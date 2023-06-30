@@ -33,7 +33,6 @@ def login():
             if check_password_hash(result_dict['password'], password):
                 login_user(user, remember=True)
                 flash('Logged in successfully!', category='success')               
-                flash(current_user.is_authenticated())
                 return redirect(url_for('views.profile'))
             else:
                 flash('Incorrect password, try again.', category='error')
@@ -116,6 +115,7 @@ def add_user(agency_name, email, contact, password1, password2):
             'name STRING(150),'
             'bd INTERGER,'
             'location STRING(150),'
+            'price INTEGER'
             'user_id INTEGER,'
             'FOREIGN KEY (user_id) REFERENCES users (id)'
             ');'
@@ -125,6 +125,14 @@ def add_user(agency_name, email, contact, password1, password2):
             'filename STRING(150),'
             'property_id INTEGER,'
             'FOREIGN KEY (property_id) REFERENCES properties (id) ON DELETE CASCADE'
+            ');'
+        )
+            conn.execute('CREATE TABLE IF NOT EXISTS bios ('
+            'id INTEGER PRIMARY KEY AUTOINCREMENT,'
+            'filename STRING(150),'
+            'description TEXT,'
+            'user_id INTEGER,'
+            'FOREIGN KEY (user_id) REFERENCES users (id) ON DELETE CASCADE'
             ');'
         )
         conn.commit()            

@@ -1,5 +1,8 @@
-{% extends 'base.html' %} {{agent.name}} {% block content %}
-<h1>Welcome, {{ current_user.name }}!</h1>
+{% extends 'base.html' %}
+{% block title %} {{ agent.name }} {% endblock %}
+
+{% block content %}
+<h1>{{ agent.name }}</h1>
 
 <h2>Properties Listed:</h2>
 <ul>
@@ -10,7 +13,6 @@
   <!-- Iterate through the images and display them -->
   <ul>
     {% for image in property_images %}
-      <li>{{ image }}</li>
       <li><img src="../static/uploads/{{ image }}" alt="Image"></li>
     {% endfor %}
   </ul>

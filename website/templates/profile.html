@@ -1,5 +1,39 @@
 {% extends 'base.html' %} {% block content %}
 <h1>Welcome, {{ current_user.name }}!</h1>
+<h3>Upload Image</h3>
+<form
+  action="/upload_pic/{{ current_user.id }}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <input type="hidden" name="current_user_id" value="{{ current_user.id }}" />
+  <input type="file" name="image" accept="image/*" />
+  <button type="submit">Upload</button>
+
+</form>
+<img src="../static/uploads/{{ pic.filename }}" alt="Profile Photo">
+<p>{{ pic.description }}</p>
+<form method="POST">
+  <div class="msg">
+    <textarea
+      placeholder="Edit description"
+      name="description"
+      value="{{ request.form['description'] }}"
+    ></textarea>
+    <button type="submit" class="cta-button">Submit</button>
+  </div>
+</form>
+
+<ul>
+  <li>{{ current_user.name }}</li>
+  <li>{{ current_user.email }}</li>
+  <li>{{ current_user.contact }}</li>
+</ul>
+<span style="font-size: 24px; color: green">
+  <a href="/details/{{ current_user.id }}/edit">
+    <i class="bi bi-pencil-fill"></i
+  ></a>
+</span>
 
 <h2>Your Properties:</h2>
 <ul>
