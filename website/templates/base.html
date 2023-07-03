@@ -23,11 +23,12 @@
     <link rel="stylesheet" href="../static/styles/contact.css" />
     <link rel="stylesheet" href="../static/styles/base.css" />
     <link rel="stylesheet" href="../static/styles/profile.css" />
+    <link rel="stylesheet" href="../static/styles/home.css" />
 
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
       <button
         class="navbar-toggler"
         type="button"
@@ -38,7 +39,21 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" id="home" href="/">Home</a>
+          <div class="social-icons">
+            <a class="nav-item nav-link" href="#">
+              <i class="fa fa-facebook text-primary"></i>
+              <span class="sr-only">Visit our Facebook page</span>
+            </a>
+            <a class="nav-item nav-link" href="#">
+              <i class="fa fa-twitter text-info"></i>
+              <span class="sr-only">Visit our Twitter page</span>
+            </a>
+            <a class="nav-item nav-link" href="#">
+              <i class="fa fa-instagram text-danger"></i>
+              <span class="sr-only">Visit our Instagram page</span>
+            </a>
+          </div>
+          <a class="nav-item nav-link" id="home" href="/">KODY</a>
           <a class="nav-item nav-link" id="aboutUs" href="/aboutUs">About Us</a>
           <a class="nav-item nav-link" id="properties" href="/properties"
             >Properties</a
@@ -71,6 +86,60 @@
     </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %}
     <div class="custom-container">{% block content %} {% endblock %}</div>
+    <!-- Footer -->
+    <!-- <footer class="footer bg-dark text-white py-4"> -->
+    <footer class="footer">
+      <div class="row">
+        <div class="col">
+          <!-- Links (except Logout) -->
+          <div class="left">
+            <p><a class="text-white mr-3" href="/">HOME</a></p>
+            <p><a class="text-white mr-3" href="/aboutUs">About Us</a></p>
+            <p><a class="text-white mr-3" href="/properties">Properties</a></p>
+            <p><a class="text-white mr-3" href="/agents">Agents</a></p>
+            <p><a class="text-white" href="/contactUs">Contact Us</a></p>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Location icon and address -->
+          <p id="f">
+            <i class="bi bi-geo-alt-fill mr-2"></i>
+            LOCATED AT
+          </p>
+          <p></p>
+          <p id="f">Kingpalay Building, 4th floor</p>
+          <p id="f">Moi Avenue, Nairobi</p>
+        </div>
+        <div class="col">
+          <!-- Social media icons -->
+          <p id="f">SOCIALS</p>
+          <p></p>
+          <div class="my-icons">
+            <p>
+              <a class="text-white" href="#">
+                <i class="fa fa-facebook text-primary"></i>
+                Visit our Facebook page
+              </a>
+            </p>
+        
+            <p>
+              <a class="text-white" href="#">
+                <i class="fa fa-twitter text-info"></i>
+                Visit our Twitter page
+              </a>
+            </p>
+        
+            <p>
+              <a class="text-white" href="#">
+                <i class="fa fa-instagram text-danger"></i>
+                Visit our Instagram page
+              </a>
+            </p>
+          </div>
+        </div>        
+      </div>
+    </footer>
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"

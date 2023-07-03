@@ -1,0 +1,23 @@
+.home {
+    display: flex;
+}
+
+.home_title {
+    flex: 1;
+    padding: 20px;
+    /* width: 40%; */
+}
+
+.images {
+    /* flex: 1; */
+}
+.home_button {
+    height: 45px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    margin: 10px;
+    /* background-color: rgba(0, 0, 255); */
+}
