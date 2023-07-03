@@ -1,24 +1,83 @@
-{% extends 'base.html' %}
-{% block title %}Properties{% endblock %}
+{% extends 'base.html' %} {% block title %}Properties{% endblock %} {% block
+content %}
 
-{% block content %}
+<section class="properties-section">
+  <h2>Houses Available for Rent:</h2>
+  {% for property in properties %} {% set property_images =
+  files[property.id].filenames %}
+  <div class="container">
+    <div
+      id="carouselExampleIndicators"
+      class="carousel slide"
+      data-ride="carousel"
+    >
+      <ol class="carousel-indicators">
+        {% for image in property_images %}
+        <li
+          data-target="#carouselExampleIndicators"
+          data-slide-to="{{ loop.index0 }}"
+          {%
+          if
+          loop.first
+          %}class="active"
+          {%
+          endif
+          %}
+        ></li>
+        {% endfor %}
+      </ol>
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-8 offset-lg-2">
+            <div class="carousel-inner">
+              {% for image in property_images %}
+              <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <img
+                  class="d-block w-100"
+                  id="responsive-image"
+                  src="../static/uploads/{{ image }}"
+                  alt="Image"
+                  {{
+                  loop.index
+                  }}
+                />
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </div>
+      </div>
 
-<h2>Existing Properties:</h2>
-  {% for property in properties %}
-  
-    <!-- Retrieve the images for the current property -->
-    {% set property_images = files[property.id] %}
-    
-    <!-- Iterate through the images and display them -->
-    <ul>
-      {% for image in property_images %}
-        <li><img src="../static/uploads/{{ image }}" alt="Image"></li>
-      {% endfor %}
-    </ul>
-    <ul>
-      <li>{{ property.name }}</li>
-      <li>Bedroom(s): {{ property.bd }}</li>
-      <li>Location: {{ property.location }}</li>
-    </ul>
-  {% endfor %}
-{% endblock %}
+      <a
+        class="carousel-control-prev"
+        href="#carouselExampleIndicators"
+        role="button"
+        data-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="sr-only">Previous</span>
+      </a>
+      <a
+        class="carousel-control-next"
+        href="#carouselExampleIndicators"
+        role="button"
+        data-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="sr-only">Next</span>
+      </a>
+    </div>
+    <div class="property-details">
+      <div>
+        <p>Agency Name: {{ files[property.id].agency_name }}</p>
+        <b>
+          {{ property.bd }} Bedroom(s) at {{ property.name }} in {{
+          property.location }}
+          <p>Ksh.{{ property.price }}</p>
+        </b>
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+  {% endblock %}
+</section>

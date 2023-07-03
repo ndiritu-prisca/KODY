@@ -46,10 +46,10 @@ section {
   background-color: #f8f8f8;
 }
 
-.container {
+/* .my_container {
   max-width: 960px;
   margin: 0 auto;
-}
+} */
 
 .row.justify-content-center {
   justify-content: center;

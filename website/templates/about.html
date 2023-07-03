@@ -8,7 +8,7 @@ content %}
 </section>
 <section>
   <h3 class="features-heading">Our Key Features</h3>
-  <div class="container">
+  <div class="my_container">
     <div class="row justify-content-center mt-4">
       <div class="feature col-12 col-md-6 col-lg-4">
         <div class="feature-wrapper">
@@ -98,7 +98,7 @@ content %}
     </div>
   </div>
   <div class="column">
-    <a href="#" id="view-properties-button" class="cta-button"
+    <a href="{{ url_for('views.properties') }}" id="" class="cta-button"
       >View Properties</a
     >
     <a href="{{ url_for('auth.sign_up') }}" class="cta-button"
@@ -106,5 +106,4 @@ content %}
     >
   </div>
 </section>
-<script src="../static/scripts/about.js"></script>
 {% endblock %}

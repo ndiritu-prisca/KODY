@@ -9,7 +9,7 @@ from werkzeug.utils import secure_filename
 views = Blueprint('views', __name__)
 
 mail = Mail()
-ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
+ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp'}
 
 
 def get_db_connection():
@@ -41,6 +41,9 @@ def properties():
         # Iterate through each row in user_properties
         for row in properties:
             property_id = row['id']
+
+            agency = conn.execute('SELECT name FROM users WHERE id = ?', (row['user_id'],)).fetchone()
+            agency_name = agency['name'] if agency else None
     
             # Retrieve filenames from the images table for the current property_id
             images = conn.execute('SELECT filename FROM images WHERE property_id = ?', (property_id,)).fetchall()
@@ -49,7 +52,7 @@ def properties():
             filenames = [image['filename'] for image in images]
         
             # Assign the filenames to the property_id in the dictionary
-            file_dict[property_id] = filenames  
+            file_dict[property_id] = {'filenames': filenames, 'agency_name': agency_name}
         conn.close()
         return render_template("properties.html", properties=properties, files=file_dict)
 
@@ -149,6 +152,30 @@ def profile():
     conn.close()
     return render_template("profile.html", user_properties=user_properties, files=file_dict, pic=profile_pic)
 
+@views.route('/details/edit', methods=['GET', 'POST'])
+@login_required
+def edit_profile():
+    if request.method == "POST":
+        agency_name = request.form.get('agencyName')
+        email = request.form.get('email')
+        contact = request.form.get('contact')   
+        conn = get_db_connection()
+        conn.execute('UPDATE users SET name = ?, email = ?, contact = ? WHERE id = ?',
+              (agency_name, email, contact, current_user.id))
+        conn.commit()
+        conn.close()
+
+        flash('Profile updated successfully!', category='success')
+        return redirect(url_for(".profile"))
+    conn = get_db_connection()
+    dataobj = conn.execute('SELECT * FROM users WHERE id = ?',
+                    (current_user.id,)).fetchone()
+    
+    data = dict(zip(dataobj.keys(), dataobj))
+    conn.commit()
+    conn.close()
+    return render_template("edit_profile.html", data=data)
+
 @views.route('/profile/create', methods=['GET', 'POST'])
 @login_required
 def add_properties():
@@ -156,9 +183,10 @@ def add_properties():
         name = request.form.get('propertyName')
         bd = request.form.get('bd')
         location = request.form.get('location')
+        price = request.form.get('price')
         conn = get_db_connection()
-        created_property = conn.execute('INSERT INTO properties (name, bd, location, user_id) VALUES (?, ?, ?, ?)',
-                    (name, bd, location, current_user.id))
+        created_property = conn.execute('INSERT INTO properties (name, bd, location, price, user_id) VALUES (?, ?, ?, ?, ?)',
+                    (name, bd, location, price, current_user.id))
         property_id = created_property.lastrowid
         conn.commit()
         conn.close()
@@ -202,9 +230,10 @@ def edit_properties(id):
         name = request.form.get('propertyName')
         bd = request.form.get('bd')
         location = request.form.get('location')
+        price = request.form.get('price')
         conn = get_db_connection()
-        conn.execute('UPDATE properties SET name = ?, bd = ?, location = ?, user_id = ? WHERE id = ?',
-              (name, bd, location, current_user.id, id))
+        conn.execute('UPDATE properties SET name = ?, bd = ?, location = ?, price = ?, user_id = ? WHERE id = ?',
+              (name, bd, location, price, current_user.id, id))
         conn.commit()
         conn.close()
 

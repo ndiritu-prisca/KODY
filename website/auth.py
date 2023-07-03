@@ -115,7 +115,7 @@ def add_user(agency_name, email, contact, password1, password2):
             'name STRING(150),'
             'bd INTERGER,'
             'location STRING(150),'
-            'price INTEGER'
+            'price INTEGER,'
             'user_id INTEGER,'
             'FOREIGN KEY (user_id) REFERENCES users (id)'
             ');'

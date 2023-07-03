@@ -14,6 +14,7 @@ SELECT * FROM properties;
 DROP TABLE users;
 DROP TABLE properties;
 DROP TABLE images;
+DROP TABLE bios;
 SELECT * FROM properties;
 SELECT * FROM images;
 SELECT * FROM bios;
