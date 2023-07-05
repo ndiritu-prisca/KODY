@@ -1,16 +1,19 @@
+/* .custom-control {
+    margin: 0 1px; 
+} */
 .home {
     display: flex;
+    flex-direction: column; /* Arrange elements vertically */
+    align-items: center; /* Center elements horizontally */
+    text-align: center; /* Center text within elements */
 }
 
 .home_title {
-    flex: 1;
+    /* flex: 1; */
     padding: 20px;
     /* width: 40%; */
 }
 
-.images {
-    /* flex: 1; */
-}
 .home_button {
     height: 45px;
     width: 100%;
@@ -21,3 +24,23 @@
     margin: 10px;
     /* background-color: rgba(0, 0, 255); */
 }
+.tenants {
+    /* Styles for tenants */
+    margin-top: 20px; /* Add margin to separate from previous elements */
+}
+.recent_list {
+    display: flex;
+    /* flex-direction: row; */
+    /* flex-wrap: wrap; */
+    justify-content: center;
+    gap: 10px;
+    margin: auto;
+    /* height: 200px; */
+    /* width: 300px; */
+    max-width: 960px; 
+}
+.recent_list img {
+    flex: 0 0 300px; 
+    height: 200px; 
+    object-fit: cover; 
+  }

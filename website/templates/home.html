@@ -3,55 +3,83 @@
 
 {% block content %}
 <container class="home">
-    <div class="home_title">
-        <h2>
-            Discover <br> Your Next <br> Home
-        </h2>
-        <p>
-            Find a variety of properties that best suit your needs in one place.
-        </p>
-        <form action="" class="home_search">
-            <!-- <i class="bi bi-geo-alt-fill mr-2"></i>
-            <input type="search" placeholder="Search by location..." class="home_search-input"> -->
-            <button class="home_button"><a class="button" href="/properties">Get Started</a></button>
-        </form>
+  <div class="home_title">
+      <h2>
+        Discover Your Next Home
+      </h2>
+      <p>
+        Find a variety of properties that best suit your needs in one place.
+      </p>
+      <form action="" class="home_search">
+        <!-- <i class="bi bi-geo-alt-fill mr-2"></i>
+        <input type="search" placeholder="Search by location..." class="home_search-input"> -->
+        <button class="home_button"><a class="button" href="/properties">GET STARTED</a></button>
+      </form>
     </div>
     <div class="images">
-        <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-            <ol class="carousel-indicators">
-                <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-                <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-            </ol>
-              <div class="container-fluid">
-                <div class="row">
-                  <div class="col-lg-8 offset-lg-2">
-                    <div class="carousel-inner">
-                      <div class="carousel-item active">
-                        <img class="d-block w-100" id="responsive-image" src="../static/images/front.jpg" alt="First slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="Second slide">
-                      </div>
-                      <div class="carousel-item">
-                        <img class="d-block w-100" id="responsive-image" src="../static/images/kitusuru_in.jpg" alt="Third slide">
-                      </div>
-                    </div>
-                  </div>
+      <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+          <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+          <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                  <img class="d-block w-100" id="responsive-image" src="../static/images/front.jpg" alt="First slide">
                 </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="Second slide">
+                </div>
+                <div class="carousel-item">
+                  <img class="d-block w-100" id="responsive-image" src="../static/images/kitusuru_in.jpg" alt="Third slide">
+                </div>
+              </div>
             </div>
-            
-            <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-              <span class="sr-only">Previous</span>
-            </a>
-            <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-              <span class="carousel-control-next-icon" aria-hidden="true"></span>
-              <span class="sr-only">Next</span>
-            </a>
+          </div>
+        </div>
+        
+        <a class="carousel-control-prev custom-control" href="#carouselExampleIndicators" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next custom-control" href="#carouselExampleIndicators" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+  </div>
+  <div class="tenants">
+    <p>Searching for the perfect rental home can be time-consuming and overwhelming. At KODY, we've created a seamless platform that connects you directly with trusted agents and their exceptional rental properties. Get ready to embark on a stress-free and efficient rental journey with us!</p>
+    <h3>Why Choose KODY?</h3>
+    <ul>
+      <li>Extensive Selection: Explore a wide range of rental properties, meticulously curated by experienced agents, ensuring you find the ideal home to suit your needs and preferences.</li>
+      <li>Instant Access: Get instant access to detailed property listings, including high-quality images, comprehensive descriptions, pricing, and availability, enabling you to make informed decisions.</li>
+      <li>Direct Communication: Connect directly with agents representing the properties you're interested in, allowing you to ask questions, schedule viewings, and receive timely responses.</li>
+      <li>Secure and Reliable: Rest easy knowing that all agents and properties on KODY are verified and vetted, providing you with a trustworthy and safe rental experience.</li>
+    </ul>
+    <h3>Most Recent Listings</h3>
+    <div class="recent_list">
+      <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="First image">
+      <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="Second image">
+      <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="Second image">
     </div>
-    
+    <div class="agents">
+      <h2>Are You an Agent?</h2>
+      <h4>Unlock the Power of KODY: Amplify Your Reach, Maximize Your Success</h4>
+      <p>Are you an agent searching for the perfect platform to showcase your rental properties? Look no further! KODY is here to revolutionize your renting experience. Our user-friendly interface and extensive network provides agents like you with the ultimate platform to register and showcase your available rental houses.</p>
+      <h3>Why Join KODY?</h3>
+      <ul>
+        <li>Expansive Exposure: Gain maximum visibility for your properties through our vast network of prospective tenants actively seeking rentals.</li>
+        <li>Seamless Registration: Our hassle-free registration process allows you to quickly create a professional profile and start adding your properties within minutes.</li>
+        <li>Dynamic Property Management: Effortlessly manage and update your listings, pricing, and availability, ensuring accurate and up-to-date information for potential tenants.</li>
+      </ul>
+      <h4>Join KODY today and revolutionize your rental business!</h4>
+      <button class="home_button"><a class="button" href="/sign-up">CLICK HERE TO JOIN</a></button>
     </div>
+  </div>
 </container>
 
 {% endblock %}
