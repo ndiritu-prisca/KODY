@@ -173,7 +173,7 @@
 
 <script>
   function enableEdit(element) {
-    if (element.tagName === "IMG") {
+    if (element.classList.contains("profile-picture")) {
       var profilePicForm = document.getElementById("profilePicForm");
       profilePicForm.style.display = "block";
     } else if (element.classList.contains("editable")) {
