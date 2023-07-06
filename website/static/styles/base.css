@@ -5,13 +5,17 @@ body {
     height: 40px;
     width: 80px;
 }
-.custom-container {
+/* .custom-container {
     margin-left: 5%;
     margin-right: 5%;
     max-width: 940px;
     padding-top: 10px;
     padding-bottom: 10px;
-    }
+} */
+.custom-container {
+    width: 100%;
+    margin-left: 15px;
+}
 
 .social-icons {
     position: absolute;

@@ -13,14 +13,19 @@
     align-items: center;
     min-height: 75vh;
 }
+/* .login_con {
+    background-color:#6d5b5b;
+} */
 .container {
     width: 350px;
     display: flex;
     flex-direction: column;
     padding: 0 15px 0 15px;
+    border-radius: 25%;
+    background-color: #fff;
 }
-header{
-    color: #fff;
+h2{
+    color: #070606;
     font-weight: 700;
     font-size: 40px;
     display: flex;
@@ -47,11 +52,12 @@ header{
 }
 .submit {
     height: 45px;
-    width: 100%;
+    width: 80%;
     border: none;
     outline: none;
     border-radius: 30px;
     color: #fff;
     margin: 10px;
+    margin-left: 30px;
     background-color: rgba(0, 0, 255);
 }

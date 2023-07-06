@@ -3,30 +3,74 @@
 } */
 .home {
     display: flex;
+    width: 100;
     flex-direction: column; /* Arrange elements vertically */
     align-items: center; /* Center elements horizontally */
     text-align: center; /* Center text within elements */
 }
+#section {
+    background-color: #fff;
+}
+.hm_title {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+}
 
-.home_title {
-    /* flex: 1; */
-    padding: 20px;
+#home_title {
+    flex: 1;
+    margin: 0;
+    padding-top: 20px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-bottom: 0;
+    background-color: rgb(204, 231, 245);
     /* width: 40%; */
+}
+#search_img {
+    width: 250px;
+    height: 200px;
+}
+#images {
+    flex: 3;
+    margin: 0;
 }
 
 .home_button {
     height: 45px;
-    width: 100%;
+    width: 250px;
     border: none;
     outline: none;
     border-radius: 30px;
-    color: #fff;
+    background-color: #bbb6af;
     margin: 10px;
+    font-weight: bold;
     /* background-color: rgba(0, 0, 255); */
 }
-.tenants {
-    /* Styles for tenants */
-    margin-top: 20px; /* Add margin to separate from previous elements */
+.hm_tenants {
+    display: flex;
+    flex-direction: row;
+}
+
+#left {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+    /* width: 40%; */
+}
+#right {
+    flex: 1;
+    padding: 20px;
+    text-align: left;
+    /* width: 40%; */
+}
+.hm_agents {
+    display: flex;
+    flex-direction: row;
+    /* flex-wrap: wrap; */
+}
+.listings {
+    height: 550px;
 }
 .recent_list {
     display: flex;
@@ -34,9 +78,27 @@
     gap: 10px;
     margin: auto;
     max-width: 960px; 
+    height: 300px; 
 }
 .recent_list img {
     flex: 0 0 300px; 
     height: 200px; 
     object-fit: cover; 
-  }
+}
+.tick-list {
+    list-style-type: none;
+    padding-left: 0;
+}
+  
+.tick-list li {
+    position: relative;
+    padding-left: 1.5em;
+}
+  
+.tick-list li:before {
+    content: "\2713"; /* Unicode value for a tick symbol */
+    position: absolute;
+    left: 0;
+    margin-right: 0.5em;
+    font-weight: bold;
+}

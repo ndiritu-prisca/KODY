@@ -58,8 +58,8 @@ def properties():
         for row in properties:
             property_id = row['id']
 
-            agency = conn.execute('SELECT name FROM users WHERE id = ?', (row['user_id'],)).fetchone()
-            agency_name = agency['name'] if agency else None
+            agency = conn.execute('SELECT name, contact FROM users WHERE id = ?', (row['user_id'],)).fetchone()
+            agency_name, contact = agency['name'], agency['contact'] if agency else None
     
             # Retrieve filenames from the images table for the current property_id
             images = conn.execute('SELECT filename FROM images WHERE property_id = ?', (property_id,)).fetchall()
@@ -68,7 +68,7 @@ def properties():
             filenames = [image['filename'] for image in images]
         
             # Assign the filenames to the property_id in the dictionary
-            file_dict[property_id] = {'filenames': filenames, 'agency_name': agency_name}
+            file_dict[property_id] = {'filenames': filenames, 'agency_name': agency_name, 'contact': contact}
         conn.close()
         return render_template("properties.html", properties=properties, files=file_dict)
 
