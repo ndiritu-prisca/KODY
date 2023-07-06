@@ -60,12 +60,86 @@
       <li>Direct Communication: Connect directly with agents representing the properties you're interested in, allowing you to ask questions, schedule viewings, and receive timely responses.</li>
       <li>Secure and Reliable: Rest easy knowing that all agents and properties on KODY are verified and vetted, providing you with a trustworthy and safe rental experience.</li>
     </ul>
-    <h3>Most Recent Listings</h3>
-    <div class="recent_list">
-      <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="First image">
-      <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="Second image">
-      <img class="d-block w-100" id="responsive-image" src="../static/images/inside.jpg" alt="Second image">
-    </div>
+    <section class="recent_list">
+      <h3>Most Recent Listings</h3>
+      {% for property in properties %} {% set property_images =
+        files[property.id].filenames %}
+        <div class="container">
+          <div
+            id="carouselExampleIndicators"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              {% for image in property_images %}
+              <li
+                data-target="#carouselExampleIndicators"
+                data-slide-to="{{ loop.index0 }}"
+                {%
+                if
+                loop.first
+                %}class="active"
+                {%
+                endif
+                %}
+              ></li>
+              {% endfor %}
+            </ol>
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                  <div class="carousel-inner">
+                    {% for image in property_images %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                      <img
+                        class="d-block w-100"
+                        id="responsive-image"
+                        src="../static/uploads/{{ image }}"
+                        alt="Image"
+                        {{
+                        loop.index
+                        }}
+                      />
+                    </div>
+                    {% endfor %}
+                  </div>
+                </div>
+              </div>
+            </div>
+      
+            <!-- <a
+              class="carousel-control-prev"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="prev"
+            >
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselExampleIndicators"
+              role="button"
+              data-slide="next"
+            >
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="sr-only">Next</span>
+            </a> -->
+          </div>
+          <div class="property-details">
+            <div>
+              <p>Agency Name: {{ files[property.id].agency_name }}</p>
+              <p>Contact: {{ files[property.id].contact }}</p>
+              <b>
+                {{ property.bd }} Bedroom(s) at {{ property.name }} in {{
+                property.location }}
+                <p>Ksh.{{ property.price }}</p>
+              </b>
+            </div>
+          </div>
+      {% endfor %}
+    </section>
+  
     <div class="agents">
       <h2>Are You an Agent?</h2>
       <h4>Unlock the Power of KODY: Amplify Your Reach, Maximize Your Success</h4>

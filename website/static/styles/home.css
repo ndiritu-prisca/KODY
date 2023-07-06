@@ -30,13 +30,9 @@
 }
 .recent_list {
     display: flex;
-    /* flex-direction: row; */
-    /* flex-wrap: wrap; */
     justify-content: center;
     gap: 10px;
     margin: auto;
-    /* height: 200px; */
-    /* width: 300px; */
     max-width: 960px; 
 }
 .recent_list img {

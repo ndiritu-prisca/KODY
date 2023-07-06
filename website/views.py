@@ -23,10 +23,26 @@ def allowed_file(filename):
 
 @views.route('/')
 def home():
-    # conn = get_db_connection()
-    # users = conn.execute('SELECT * FROM users').fetchall()
-    # conn.close()
-    return render_template("home.html")
+    if request.method == "GET":
+        conn = get_db_connection()
+        properties = conn.execute('SELECT * FROM properties ORDER BY id DESC LIMIT 3').fetchall()
+        file_dict = {}
+        # Iterate through each row in user_properties
+        for row in properties:
+            property_id = row['id']
+
+            agency = conn.execute('SELECT name, contact FROM users WHERE id = ?', (row['user_id'],)).fetchone()
+            agency_name, contact = agency['name'], agency['contact'] if agency else None
+    
+            # Retrieve filenames from the images table for the current property_id
+            images = conn.execute('SELECT filename FROM images WHERE property_id = ?', (property_id,)).fetchall()
+        
+            # Extract the filenames from the result set
+            filenames = [image['filename'] for image in images]
+        
+            # Assign the filenames to the property_id in the dictionary
+            file_dict[property_id] = {'filenames': filenames, 'agency_name': agency_name, 'contact': contact}
+    return render_template("home.html", properties=properties, files=file_dict)
 
 @views.route('/aboutUs')
 def aboutUs():
