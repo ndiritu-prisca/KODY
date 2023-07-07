@@ -126,6 +126,7 @@ KODY/
 - The `schema.py` file contains the database schema and queries (do not run the file, only use for reference).
 - The `models.py` file defines the User, Property, Bios, and Images classes, representing the database tables.
 - The `auth.py` file creates the user, authenticate users and creates the necessary database tables.
+- The `views.py` file contains all the routes and some assistant functions.
 
 ## Database
 
