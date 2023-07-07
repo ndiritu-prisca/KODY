@@ -30,7 +30,7 @@ To install and set up the KODY website locally, follow these steps:
 1. Clone the repository:
 
 ```
-git clone https://github.com/your-username/kody.git
+git clone https://github.com/ndiritu-prisca/KODY.git
 ```
 
 2. Navigate to the project directory:
