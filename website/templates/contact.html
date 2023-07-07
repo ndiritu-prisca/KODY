@@ -6,51 +6,57 @@ content %} {% with messages = get_flashed_messages() %} {% if messages %}
 </div>
 {% endif %} {% endwith %}
 
-<div class="wrapper">
-  <div class="title">
-    <h1>contact us form</h1>
-  </div>
-  <div class="contact-form">
-    <form action="{{ url_for('views.contactUs') }}" method="POST">
-      <div class="input-fields">
-        <input
-          type="text"
-          class="input"
-          placeholder="Name"
-          name="name"
-          value="{{ request.form['name'] }}"
-        />
-        <input
-          type="text"
-          class="input"
-          placeholder="Email Address"
-          name="email"
-          value="{{ request.form['email'] }}"
-        />
-        <input
-          type="text"
-          class="input"
-          placeholder="Phone"
-          name="phone"
-          value="{{ request.form['phone'] }}"
-        />
-        <input
-          type="text"
-          class="input"
-          placeholder="Subject"
-          name="subject"
-          value="{{ request.form['subject'] }}"
-        />
-      </div>
-      <div class="msg">
-        <textarea
-          placeholder="Message"
-          name="message"
-          value="{{ request.form['message'] }}"
-        ></textarea>
-        <button type="submit" class="cta-button">Send</button>
-      </div>
-    </form>
+<div class="custom-container">
+  <div class="wrapper">
+    <div class="title">
+      <h1>contact us form</h1>
+    </div>
+    <div class="contact-form">
+      <form action="{{ url_for('views.contactUs') }}" method="POST">
+        <div class="input-fields">
+          <input
+            type="text"
+            class="input"
+            placeholder="Name"
+            name="name"
+            value="{{ request.form['name'] }}"
+          />
+          <input
+            type="text"
+            class="input"
+            placeholder="Email Address"
+            name="email"
+            value="{{ request.form['email'] }}"
+          />
+          <input
+            type="text"
+            class="input"
+            placeholder="Phone"
+            name="phone"
+            value="{{ request.form['phone'] }}"
+          />
+          <input
+            type="text"
+            class="input"
+            placeholder="Subject"
+            name="subject"
+            value="{{ request.form['subject'] }}"
+          />
+        </div>
+        <div class="msg">
+          <textarea
+            placeholder="Message"
+            name="message"
+            value="{{ request.form['message'] }}"
+          ></textarea>
+          <button type="submit" class="cta-button">Send</button>
+        </div>
+      </form>
+    </div>
   </div>
 </div>
+{% endblock %} {% block footer %}
+<footer class="footer">
+  <!-- Footer content -->
+</footer>
 {% endblock %}

@@ -8,14 +8,16 @@
   font-family: 'Roboto', sans-serif;
 }
 
-/* body {
+body {
   background: url('../images/contact_bg.jpg') no-repeat top center;
-  background-size: cover;
   height: 100vh;
-} */
+}
+.custom-container {
+  min-height: calc(100vh - 200px); /* Adjust the value as needed */
+}
 
 .wrapper {
-  position: absolute;
+  position: relative;
   top: 80%;
   left: 50%;
   transform: translate(-50%, -50%);
