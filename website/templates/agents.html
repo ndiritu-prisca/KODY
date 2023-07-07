@@ -1,31 +1,23 @@
-{% extends 'base.html' %} 
-{% block title %}Our Agents{% endblock %}
-
-{% block content %}
+{% extends 'base.html' %} {% block title %}Our Agents{% endblock %} {% block
+content %}
 
 <h2>Our Agents:</h2>
-<div>
-  {% for agent in agents %}
-  <div>
-    <li><a href="/agent/{{ agent.id }}">{{ agent.name }}</a></li>
-    <li>Contact: {{ agent.contact }}</li>
-    <ul>
-      <!-- {% for property in user_properties %} -->
-      <!-- Retrieve the images for the current property -->
-      <!-- {% set property_images = files[property.id] %} -->
-    
-      <!-- Iterate through the images and display them -->
-      <!-- {% for image in property_images %}
-        <li><img src="../static/uploads/{{ image }}" alt="Image"></li>
-      {% endfor %}
-      <li>{{ property.name }}</li>
-      <li>Bedroom(s): {{ property.bd }}</li>
-      <li>Location: {{ property.location }}</li>
-      <li>{{ agent.name }} - contact: {{ agent.contact }}</li>
-      {% endfor %} -->
-    </ul>
-  </div>
-  {% endfor %}
 
+<div class="agent-sections">
+  <div class="agent-row">
+    {% set counter = 0 %} {% for agent in agents %} {% if counter % 3 == 0 and
+    not loop.first %}
+  </div>
+  <div class="agent-row">
+    {% endif %}
+    <div class="agent-details">
+      <h3><a href="/agent/{{ agent.id }}">{{ agent.name }}</a></h3>
+      <img src="../static/uploads/{{ agent.filename }}" alt="Profile Picture" />
+      <p>Contact: {{ agent.contact }}</p>
+      <p>Description: {{ agent.description }}</p>
+    </div>
+    {% set counter = counter + 1 %} {% endfor %}
+  </div>
 </div>
+
 {% endblock %}

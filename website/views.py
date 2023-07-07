@@ -75,7 +75,12 @@ def properties():
 @views.route('/agents')
 def agents():
     conn = get_db_connection()
-    agents = conn.execute('SELECT * FROM users').fetchall()
+    query = '''
+        SELECT users.id, users.name, users.contact, bios.filename, bios.description
+        FROM users
+        LEFT JOIN bios ON users.id = bios.user_id
+    '''
+    agents = conn.execute(query).fetchall()
     conn.close()
     return render_template("agents.html", agents=agents)
 

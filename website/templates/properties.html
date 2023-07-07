@@ -3,81 +3,79 @@ content %}
 
 <section class="properties-section">
   <h2>Houses Available for Rent:</h2>
-  {% for property in properties %} {% set property_images =
-  files[property.id].filenames %}
-  <div class="container">
-    <div
-      id="carouselExampleIndicators"
-      class="carousel slide"
-      data-ride="carousel"
-    >
-      <ol class="carousel-indicators">
-        {% for image in property_images %}
-        <li
-          data-target="#carouselExampleIndicators"
-          data-slide-to="{{ loop.index0 }}"
-          {%
-          if
-          loop.first
-          %}class="active"
-          {%
-          endif
-          %}
-        ></li>
-        {% endfor %}
-      </ol>
-      <div class="container-fluid">
-        <div class="row">
-          <div class="col-lg-8 offset-lg-2">
+  <div class="property-sections">
+    {% for property in properties %} {% set property_images =
+    files[property.id].filenames %}
+    <div class="property-column">
+      <div class="property-details">
+        <div class="property-carousel">
+          <div
+            id="carousel-{{ property.id }}"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              {% for image in property_images %}
+              <li
+                data-target="#carousel-{{ property.id }}"
+                data-slide-to="{{ loop.index0 }}"
+                {%
+                if
+                loop.first
+                %}class="active"
+                {%
+                endif
+                %}
+              ></li>
+              {% endfor %}
+            </ol>
             <div class="carousel-inner">
               {% for image in property_images %}
               <div class="carousel-item {% if loop.first %}active{% endif %}">
                 <img
                   class="d-block w-100"
-                  id="responsive-image"
                   src="../static/uploads/{{ image }}"
-                  alt="Image"
-                  {{
-                  loop.index
-                  }}
+                  alt="Property Image"
                 />
               </div>
               {% endfor %}
             </div>
+            <a
+              class="carousel-control-prev"
+              href="#carousel-{{ property.id }}"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carousel-{{ property.id }}"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
           </div>
         </div>
-      </div>
-
-      <a
-        class="carousel-control-prev"
-        href="#carouselExampleIndicators"
-        role="button"
-        data-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a
-        class="carousel-control-next"
-        href="#carouselExampleIndicators"
-        role="button"
-        data-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    <div class="property-details">
-      <div>
-        <p>Agency Name: {{ files[property.id].agency_name }}</p>
-        <b>
-          {{ property.bd }} Bedroom(s) at {{ property.name }} in {{
-          property.location }}
+        <div class="property-info">
+          <p>Agency Name: {{ files[property.id].agency_name }}</p>
+          <h3>{{ property.bd }} Bedroom(s) at {{ property.name }}</h3>
+          <p>Location: {{ property.location }}</p>
           <p>Ksh.{{ property.price }}</p>
-        </b>
+        </div>
       </div>
     </div>
     {% endfor %}
   </div>
 </section>
+
 {% endblock %}
