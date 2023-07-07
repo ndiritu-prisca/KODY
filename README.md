@@ -20,7 +20,7 @@ KODY is a website developed using Python Flask, designed to connect users who ar
 - Users can search and browse available rental properties.
 - Agents can post their rental properties on the website.
 - User registration and login system.
-- Contact agents via email for inquiries.
+- Contact agents via phone for inquiries.
 - User and property management.
 
 ## Installation
