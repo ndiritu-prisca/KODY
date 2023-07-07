@@ -1,6 +1,6 @@
 # KODY Website
 
-![KODY Logo](website/static/styles/logo.png)
+![KODY Logo](website/static/images/kody_icon.jpg)
 
 KODY is a website developed using Python Flask, designed to connect users who are looking for apartments to rent with agents who post available rental properties. This README provides an overview of the KODY website and outlines the necessary steps to set up and run the application.
 
@@ -13,7 +13,7 @@ KODY is a website developed using Python Flask, designed to connect users who ar
 - [Database](#database)
 - [Models](#models)
 - [Contributing](#contributing)
-- [License](#license)
+- [Authors](#authors)
 
 ## Features
 
@@ -153,5 +153,10 @@ Contributions to the KODY website are welcome! If you would like to contribute, 
 5. Submit a pull request detailing your changes.
 
 ---
+
+## Authors
+
+Winfred Kiarie - [Github](https://github.com/epicsociety)
+Prisca Ndiritu - [Github](https://github.com/ndiritu-prisca)
 
 Thank you for your interest in the KODY website! If you have any further questions or need assistance, please feel free to contact us.
