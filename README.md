@@ -156,7 +156,7 @@ Contributions to the KODY website are welcome! If you would like to contribute, 
 
 ## Authors
 
-1. Winfred Kiarie - [Github](https://github.com/epicsociety).
-2. Prisca Ndiritu - [Github](https://github.com/ndiritu-prisca).
+1. Winfred Kiarie - [Github](https://github.com/epicsociety)
+2. Prisca Ndiritu - [Github](https://github.com/ndiritu-prisca)
 
 Thank you for your interest in the KODY website! If you have any further questions or need assistance, please feel free to contact us.
