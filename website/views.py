@@ -8,7 +8,6 @@ from werkzeug.utils import secure_filename
 
 views = Blueprint('views', __name__)
 
-mail = Mail()
 ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp'}
 
 
@@ -116,22 +115,25 @@ def contactUs():
         subject = request.form['subject']
         message = request.form['message']
 
+        mail = Mail(current_app)
         mail.init_app(current_app)
 
         msg = Message(
             subject="New contact form submission - {}".format(subject),
-            sender=email,
+            sender="kodyapp@yahoo.com",
             recipients=['transcriberandwriter@gmail.com']
         )
 
         msg.body = f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\n{message}"
 
-        try:
-            mail.send(msg)
-            flash('Thank you for your message. We will get back to you shortly.')
+        mail.send(msg)
+        flash('Thank you for your message. We will get back to you shortly.')
+        # try:
+        #     mail.send(msg)
+        #     flash('Thank you for your message. We will get back to you shortly.')
 
-        except Exception as e:
-            flash('An error occurred while sending the message. Please try again later.')
+        # except Exception as e:
+        #     flash('An error occurred while sending the message. Please try again later.')
         return redirect(url_for('views.home'))
 
     return render_template("contact.html")

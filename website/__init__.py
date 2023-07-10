@@ -15,6 +15,13 @@ def create_app():
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     db.init_app(app)
 
+    app.config['MAIL_SERVER'] = 'smtp.mail.yahoo.com'
+    app.config['MAIL_PORT'] = 587
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USERNAME'] = 'kodyapp@yahoo.com'
+    app.config['MAIL_PASSWORD'] = '@KDYapp1'
+
+
     from .views import views
     from .auth import auth
 
