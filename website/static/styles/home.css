@@ -102,3 +102,18 @@
     margin-right: 0.5em;
     font-weight: bold;
 }
+@media (max-width: 767px) {
+    .hm_title {
+      flex-direction: column;
+    }
+  
+    .hm_tenants {
+        flex-direction: column;
+    }
+    .hm_agents {
+        flex-direction: column;
+    }
+    .listings {
+        height: 600px;
+    }
+}

@@ -1,22 +1,11 @@
-/* *{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-} */
-/* body {
-    background-image: url(../images/cover.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: unset;
-} */
 .box {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 75vh;
 }
-/* .login_con {
-    background-color:#6d5b5b;
-} */
-.container {
+
+.login_container {
     width: 350px;
     display: flex;
     flex-direction: column;

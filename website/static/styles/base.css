@@ -1,17 +1,11 @@
 body {
-    background-color: rgb(204, 231, 245);
+    background: url('../images/contact_bg.jpg') no-repeat top center;
+    height: 100vh;
 }
 #kody_icon {
     height: 40px;
     width: 80px;
 }
-/* .custom-container {
-    margin-left: 5%;
-    margin-right: 5%;
-    max-width: 940px;
-    padding-top: 10px;
-    padding-bottom: 10px;
-} */
 .custom-container {
     width: 100%;
     margin-left: 15px;
@@ -20,7 +14,7 @@ body {
 .social-icons {
     position: absolute;
     top: 0;
-    left: 80%;
+    left: 52%;
     transform: translateX(-50%);
     display: flex;
     align-items: center;
@@ -36,6 +30,36 @@ body {
 .font-bold {
     font-weight: bold;
 }
+/*Login and Sign-Up styling*/
+#login-signup {
+    position: absolute;
+    /* bottom: 0; */
+    left: 55%;
+    transform: translateX(50%);
+    display: flex;
+    align-items: center;
+}
+
+#login-signup a {
+    margin-right: 5px;
+}
+
+#login-signup a:last-child {
+    margin-right: 0;
+} 
+/*Logout styling*/
+#logout {
+    position: absolute;
+    left: 60%;
+    transform: translateX(50%);
+    display: flex;
+}
+
+#logout a {
+    margin-right: 5px;
+} 
+
+/*Footer styling*/
 .footer {
     width: 100%;
     position: relative;
