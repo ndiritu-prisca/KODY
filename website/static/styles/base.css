@@ -50,14 +50,18 @@ body {
 /*Logout styling*/
 #logout {
     position: absolute;
-    left: 60%;
+    left: 52%;
     transform: translateX(50%);
     display: flex;
 }
 
 #logout a {
-    margin-right: 5px;
+    margin: 5px;
+}
+#logout #log {
+    margin-right: 15px;
 } 
+
 
 /*Footer styling*/
 .footer {
@@ -86,4 +90,11 @@ body {
 }
 .my-icons {
     font-size: 14px;
+}
+
+/* Responsive */
+@media (max-width: 767px) {
+    #logout {
+        flex-direction: column;
+    }
 }

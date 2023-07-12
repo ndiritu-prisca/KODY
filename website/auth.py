@@ -49,6 +49,7 @@ def logout():
     
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
+    # sign up method
     data =request.form
     if request.method == 'POST':
         agency_name = request.form.get('agencyName')
@@ -57,6 +58,7 @@ def sign_up():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
+        # opening a db connenction
         conn = get_db_connection()
         table = conn.execute("SELECT * FROM sqlite_master WHERE type = 'table' AND name LIKE 'users';")
         row = table.fetchone()

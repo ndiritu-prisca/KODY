@@ -68,7 +68,8 @@
             >Contact Us</a
           >
           <div class="nav-item nav-link" id="logout">
-            <a href="/logout">Logout</a>
+            <a id="log" href="/logout">Logout</a>
+            <a href="/profile/create">Create Listing</a>
           </div>
           {% else %}
           <a class="nav-item nav-link" id="home" href="/">
@@ -176,5 +177,6 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
+    <script src="{{ url_for('static', filename='scripts/properties.js') }}"></script>
   </body>
 </html>
