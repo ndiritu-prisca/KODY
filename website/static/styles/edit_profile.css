@@ -1,0 +1,27 @@
+.edit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit .container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: bisque;
+    height: 100%;
+    width: 100%;
+
+}
+
+
+.submit-button {
+    height: 35px;
+    width: 50%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    margin: 10px;
+    background-color: rgba(0, 0, 255);
+}

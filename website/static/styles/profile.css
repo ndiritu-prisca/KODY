@@ -1,0 +1,159 @@
+/* 
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+  } */
+  .welcome-section {
+    background-color: #daf2f4c5;
+  }
+  
+  .container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  .profile-section {
+    display: flex;
+    align-items: right;
+    margin-bottom: 20px;
+  }
+  
+  .profile-picture {
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    margin-right: 20px;
+    overflow: hidden;
+  }
+  
+  .profile-picture img {
+    width: 50%;
+    height: 50%;
+  }
+  
+  .profile-details {
+    flex-grow: 1;
+  }
+  
+  .profile-details b {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  
+  .profile-actions {
+    display: flex;
+    align-items: center;
+    margin-top: 10px;
+  }
+  
+  .profile-actions a {
+    margin-right: 10px;
+    font-size: 24px;
+    color: green;
+  }
+  
+  /* Description section */
+  .description-section {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .description-section p {
+    flex-grow: 1;
+    margin: 0;
+    padding-left: 20px;
+    font-size: 16px;
+    color: #333;
+  }
+  
+  .carousel {
+    height: 100%; /* Set the height of the carousel to 100% */
+    width: 100%;
+  }
+
+.container-fluid {
+    padding: 0; /* Remove default padding from the container */
+  }
+  
+.carousel-inner {
+  height: 500px; /* Adjust the height of the carousel */
+  width: 100%;
+  margin-top: 30px;
+  margin-right: 30px;
+}
+  
+.carousel-item img {
+  width: 100%; /* Expand the image to fill the carousel item */
+  height: 100%; /* Maintain the aspect ratio of the image */
+  object-fit: cover; /* Crop or stretch the image to cover the entire container */
+}
+  
+  @media (max-width: 767px) {
+    .carousel-inner {
+      height: 300px; /* Adjust the height of the carousel for smaller screens */
+    }
+  }
+  
+.carousel-item {
+    height: 77vh;
+    width: 100%;
+}
+.carousel-control-prev,
+.carousel-control-next {
+  width: 5%; /* Adjust the width of the previous and next controls */
+  height: 100%; /* Make the controls occupy the full height of the carousel */
+  opacity: 1; /* Ensure the controls are fully visible */
+  background: none; /* Remove background color */
+  z-index: 1; /* Position the controls above the images */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  transform: scale(2); /* Scale up the size of the control icons */
+}
+
+.carousel-control-prev {
+  left: -5%; /* Position the previous control to the left */
+}
+
+.carousel-control-next {
+  right: -5%; /* Position the next control to the right */
+}
+  /* Media queries */
+  @media (max-width: 768px) {
+    .container {
+      padding: 10px;
+    }
+  
+    .profile-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .profile-picture {
+      margin-right: 0;
+      margin-bottom: 10px;
+    }
+  
+    .profile-details {
+      width: 100%;
+    }
+  
+    .profile-actions {
+      margin-top: 5px;
+    }
+  
+    .description-section {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  
+    .description-section p {
+      padding-left: 0;
+      margin-bottom: 10px;
+    }
+  }
+  

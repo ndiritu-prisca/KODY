@@ -1,0 +1,12 @@
+{% extends 'base.html' %} Upload Image {% block content %}
+<h1>Upload Image</h1>
+<form
+  action="/upload/{{ property_id }}"
+  method="POST"
+  enctype="multipart/form-data"
+>
+  <input type="hidden" name="property_id" value="{{ property_id }}" />
+  <input type="file" name="images[]" accept="image/*" multiple />
+  <button type="submit">Upload</button>
+</form>
+{% endblock %}

@@ -1,0 +1,191 @@
+{% extends 'base.html' %} {% block title %} {{ current_user.name }} {% endblock
+%}
+<link rel="stylesheet" href="../static/styles/profile.css" />
+{% block content %}
+<section class="welcome-section">
+  <h1>Welcome, {{ current_user.name }}!</h1>
+
+  {% if not pic.filename %}
+  <div class="upload-section">
+    <h3>Upload the business Logo or your profile picture</h3>
+    <form
+      action="/upload_pic/{{ current_user.id }}"
+      method="POST"
+      enctype="multipart/form-data"
+    >
+      <input
+        type="hidden"
+        name="current_user_id"
+        value="{{ current_user.id }}"
+      />
+      <input type="file" name="image" accept="image/*" />
+      <button type="submit">Upload</button>
+    </form>
+  </div>
+  {% else %}
+  <div class="profile-section">
+    <div class="profile-picture">
+      <img
+        src="../static/uploads/{{ pic.filename }}"
+        alt="Profile Photo"
+        onclick="enableEdit(this)"
+      />
+      <form
+        action="/upload_pic/{{ current_user.id }}"
+        method="POST"
+        enctype="multipart/form-data"
+        id="profilePicForm"
+      >
+        <input
+          type="hidden"
+          name="current_user_id"
+          value="{{ current_user.id }}"
+        />
+        <input type="file" name="image" accept="image/*" />
+        <button type="submit">Upload</button>
+      </form>
+    </div>
+    <div class="profile-details">
+      <b>
+        <p>{{ current_user.name }}</p>
+        <p>Email: {{ current_user.email }}</p>
+        <p>Contact: {{ current_user.contact }}</p>
+      </b>
+      <span style="font-size: 24px; color: green">
+        <a href="/details/edit">
+          <i class="bi bi-pencil-fill"></i>
+        </a>
+      </span>
+    </div>
+  </div>
+  {% endif %} {% if not pic.description %}
+  <div class="editable-section">
+    <p class="editable" onclick="enableEdit(this)">Add description</p>
+  </div>
+  {% else %}
+  <div class="editable-profile">
+    <p class="editable" onclick="enableEdit(this)">{{ pic.description }}</p>
+  </div>
+  {% endif %}
+
+  <form method="POST" id="editForm" style="display: none">
+    <div class="msg">
+      <textarea
+        placeholder="Edit description"
+        name="description"
+        id="editDescription"
+      ></textarea>
+      <button type="submit" class="cta-button">Submit</button>
+    </div>
+  </form>
+</section>
+
+<section class="properties-section">
+  <h2>Your Properties:</h2>
+  <div class="property-sections">
+    {% for property in user_properties %} {% set property_images =
+    files[property.id] %} {% if loop.index0 % 3 == 0 %}
+    <div class="row">
+      {% endif %}
+      <div class="col-md-4">
+        <div class="example-container">
+          <div
+            id="carouselExampleIndicators{{ loop.index }}"
+            class="carousel slide"
+            data-ride="carousel"
+          >
+            <ol class="carousel-indicators">
+              {% for image in property_images %}
+              <li
+                data-target="#carouselExampleIndicators{{ loop.index }}"
+                data-slide-to="{{ loop.index0 }}"
+                {%
+                if
+                loop.first
+                %}class="active"
+                {%
+                endif
+                %}
+              ></li>
+              {% endfor %}
+            </ol>
+            <div class="carousel-inner">
+              {% for image in property_images %}
+              <div class="carousel-item {% if loop.first %}active{% endif %}">
+                <img
+                  class="d-block w-100"
+                  src="../static/uploads/{{ image }}"
+                  alt="Property Image"
+                />
+              </div>
+              {% endfor %}
+            </div>
+            <a
+              class="carousel-control-prev"
+              href="#carouselExampleIndicators{{ loop.index }}"
+              role="button"
+              data-slide="prev"
+            >
+              <span
+                class="carousel-control-prev-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Previous</span>
+            </a>
+            <a
+              class="carousel-control-next"
+              href="#carouselExampleIndicators{{ loop.index }}"
+              role="button"
+              data-slide="next"
+            >
+              <span
+                class="carousel-control-next-icon"
+                aria-hidden="true"
+              ></span>
+              <span class="sr-only">Next</span>
+            </a>
+          </div>
+          <div class="property-details">
+            <div>
+              <b
+                >{{ property.bd }} Bedroom(s) at {{ property.name }} in {{
+                property.location }}</b
+              >
+              <p>Ksh.{{ property.price }}</p>
+            </div>
+            <div class="property-actions">
+              <span style="font-size: 24px; color: green">
+                <a href="/profile/edit/{{property.id}}">
+                  <i class="bi bi-pencil-fill"></i>
+                </a>
+              </span>
+              <span style="font-size: 24px; color: rgba(223, 46, 46, 0.998)">
+                <a href="/profile/{{property.id}}/delete">
+                  <i class="bi bi-trash-fill"></i>
+                </a>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% if loop.index0 % 3 == 2 or loop.last %}
+    </div>
+    {% endif %} {% endfor %}
+  </div>
+</section>
+
+<script>
+  function enableEdit(element) {
+    if (element.classList.contains("profile-picture")) {
+      var profilePicForm = document.getElementById("profilePicForm");
+      profilePicForm.style.display = "block";
+    } else if (element.classList.contains("editable")) {
+      var descriptionElement = document.getElementById("editDescription");
+      var editForm = document.getElementById("editForm");
+      descriptionElement.value = element.innerText;
+      editForm.style.display = "block";
+    }
+  }
+</script>
+
+{% endblock %}

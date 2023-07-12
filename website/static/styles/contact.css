@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css?family=Roboto');
 
-*{
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -8,17 +8,21 @@
   font-family: 'Roboto', sans-serif;
 }
 
-body{
+body {
   background: url('../images/contact_bg.jpg') no-repeat top center;
-  background-size: cover;
   height: 100vh;
 }
+.contact-container {
+  margin-left: 20%;
+  margin-right: 20%;
+  /* max-width: 940px;
+  padding-top: 10px;
+  padding-bottom: 10px; */
+  /* min-height: calc(100vh - 200px); */
+}
 
-.wrapper{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+.wrapper {
+  position: relative;
   width: 100%;
   max-width: 550px;
   background: rgba(0,0,0,0.8);
@@ -27,29 +31,31 @@ body{
   box-shadow: 0 0 10px rgba(0,0,0,0.3);
 }
 
-.wrapper .title h1{
+.wrapper .title h1 {
   color: #c5ecfd;
   text-align: center;
   margin-bottom: 25px;
 }
 
-.contact-form{
+.contact-form {
   display: flex;
 }
 
-.input-fields{
+.input-fields {
   display: flex;
   flex-direction: column;
   margin-right: 4%;
+  margin-left: 4%;
+  position: relative;
 }
 
 .input-fields,
-.msg{
-  width: 48%;
+.msg {
+  width: 100%;
 }
 
 .input-fields .input,
-.msg textarea{
+.msg textarea {
   margin: 10px 0;
   background: transparent;
   border: 0px;
@@ -59,7 +65,7 @@ body{
   width: 100%;
 }
 
-.msg textarea{
+.msg textarea {
   height: 212px;
 }
 
@@ -76,30 +82,30 @@ body{
   color: #c5ecfd;
 }
 
-.cta-button {
-    background: #39b7dd;
-    text-align: center;
-    padding: 15px;
-    border-radius: 5px;
-    color: #fff;
-    cursor: pointer;
-    text-transform: uppercase;
+.cta-button[type="submit"] {
+  background: #39b7dd;
+  text-align: center;
+  padding: 15px;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  text-transform: uppercase;
 }
 
-.cta-button:hover {
-    background-color: #f88686;
-    color: #070505;
-  }  
+.cta-button[type="submit"]:hover {
+  background-color: #f88686;
+  color: #070505;
+}
 
-@media screen and (max-width: 600px){
-  .contact-form{
+@media screen and (max-width: 600px) {
+  .contact-form {
     flex-direction: column;
   }
-  .msg textarea{
+  .msg textarea {
     height: 80px;
   }
   .input-fields,
-  .msg{
+  .msg {
     width: 100%;
   }
 }

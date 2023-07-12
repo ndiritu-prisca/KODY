@@ -14,12 +14,51 @@
       href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
       crossorigin="anonymous"
     />
-    <link rel="stylesheet" href="../static/styles/about.css" />
-    <link rel="stylesheet" href="../static/styles/contact.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/login.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/about.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/contact.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/base.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/profile.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/home.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/agents.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/edit_profile.css') }}"
+    />
+    <link
+      rel="stylesheet"
+      href="{{ url_for('static', filename='styles/agent_properties.css') }}"
+    />
+
     <title>{% block title %}Home{% endblock %}</title>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white py-3">
       <button
         class="navbar-toggler"
         type="button"
@@ -30,14 +69,38 @@
       </button>
       <div class="collapse navbar-collapse" id="navbar">
         <div class="navbar-nav">
-          <a class="nav-item nav-link" id="home" href="/">Home</a>
-          <a class="nav-item nav-link" id="about" href="/about">About</a>
+          <div class="social-icons">
+            <a class="nav-item nav-link" href="#">
+              <i class="fa fa-facebook text-primary"></i>
+              <span class="sr-only">Visit our Facebook page</span>
+            </a>
+            <a class="nav-item nav-link" href="#">
+              <i class="fa fa-twitter text-info"></i>
+              <span class="sr-only">Visit our Twitter page</span>
+            </a>
+            <a class="nav-item nav-link" href="#">
+              <i class="fa fa-instagram text-danger"></i>
+              <span class="sr-only">Visit our Instagram page</span>
+            </a>
+          </div>
+          <a class="nav-item nav-link" id="home" href="/">
+            <img
+              id="kody_icon"
+              src="../static/images/kody_icon.jpg"
+              alt="Icon"
+            />
+          </a>
+          <a class="nav-item nav-link" id="aboutUs" href="/aboutUs">About Us</a>
+          <a class="nav-item nav-link" id="properties" href="/properties"
+            >Properties</a
+          >
+          <a class="nav-item nav-link" id="agents" href="/agents">Agents</a>
+          <a class="nav-item nav-link" id="contactUs" href="/contactUs"
+            >Contact Us</a
+          >
           <a class="nav-item nav-link" id="logout" href="/logout">Logout</a>
           <a class="nav-item nav-link" id="login" href="/login">Login</a>
           <a class="nav-item nav-link" id="signUp" href="/sign-up">Sign-up</a>
-          <a class="nav-item nav-link" id="contactUs" href="/contact-us"
-            >Contact-us</a
-          >
         </div>
       </div>
     </nav>
@@ -58,7 +121,61 @@
       </button>
     </div>
     {% endif %} {% endfor %} {% endif %} {% endwith %}
-    <div class="container">{% block content %} {% endblock %}</div>
+    <div class="custom-container">{% block content %} {% endblock %}</div>
+    <!-- Footer -->
+    <!-- <footer class="footer bg-dark text-white py-4"> -->
+    <footer class="footer">
+      <div class="row">
+        <div class="col">
+          <!-- Links (except Logout) -->
+          <div class="left">
+            <p><a class="text-white mr-3" href="/">HOME</a></p>
+            <p><a class="text-white mr-3" href="/aboutUs">About Us</a></p>
+            <p><a class="text-white mr-3" href="/properties">Properties</a></p>
+            <p><a class="text-white mr-3" href="/agents">Agents</a></p>
+            <p><a class="text-white" href="/contactUs">Contact Us</a></p>
+          </div>
+        </div>
+        <div class="col">
+          <!-- Location icon and address -->
+          <p id="f">
+            <i class="bi bi-geo-alt-fill mr-2"></i>
+            LOCATED AT
+          </p>
+          <p></p>
+          <p id="f">Kingpalay Building, 4th floor</p>
+          <p id="f">Moi Avenue, Nairobi</p>
+        </div>
+        <div class="col">
+          <!-- Social media icons -->
+          <p id="f">SOCIALS</p>
+          <p></p>
+          <div class="my-icons">
+            <p>
+              <a class="text-white" href="#">
+                <i class="fa fa-facebook text-primary"></i>
+                Visit our Facebook page
+              </a>
+            </p>
+
+            <p>
+              <a class="text-white" href="#">
+                <i class="fa fa-twitter text-info"></i>
+                Visit our Twitter page
+              </a>
+            </p>
+
+            <p>
+              <a class="text-white" href="#">
+                <i class="fa fa-instagram text-danger"></i>
+                Visit our Instagram page
+              </a>
+            </p>
+          </div>
+        </div>
+      </div>
+    </footer>
+
     <script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
@@ -74,18 +191,8 @@
       integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
       crossorigin="anonymous"
     ></script>
-
-    {% block javascript %}
-    <script type="text/javascript">
-      function deleteNote(noteId) {
-        fetch("/delete-note", {
-          method: "POST",
-          body: JSON.stringify({ noteId: noteId }),
-        }).then((_res) => {
-          window.location.href = "/";
-        });
-      }
-    </script>
-    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="{{ url_for('static', filename='scripts/contact.js') }}"></script>
+    <script src="{{ url_for('static', filename='scripts/agents.js') }}"></script>
   </body>
 </html>
