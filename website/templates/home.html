@@ -3,9 +3,10 @@
 
 {% block content %}
 <container class="home">
-  <div class="home_title">
+  <div class="hm_title" id="section">
+    <div class="column" id="home_title">
       <h2>
-        Discover Your Next Home
+        Discover <br> Your Next <br> Home
       </h2>
       <p>
         Find a variety of properties that best suit your needs in one place.
@@ -16,7 +17,7 @@
         <button class="home_button"><a class="button" href="/properties">GET STARTED</a></button>
       </form>
     </div>
-    <div class="images">
+    <div class="column" id="images">
       <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
         <ol class="carousel-indicators">
           <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -50,18 +51,29 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
+    </div>
   </div>
-  <div class="tenants">
-    <p>Searching for the perfect rental home can be time-consuming and overwhelming. At KODY, we've created a seamless platform that connects you directly with trusted agents and their exceptional rental properties. Get ready to embark on a stress-free and efficient rental journey with us!</p>
-    <h3>Why Choose KODY?</h3>
-    <ul>
-      <li>Extensive Selection: Explore a wide range of rental properties, meticulously curated by experienced agents, ensuring you find the ideal home to suit your needs and preferences.</li>
-      <li>Instant Access: Get instant access to detailed property listings, including high-quality images, comprehensive descriptions, pricing, and availability, enabling you to make informed decisions.</li>
-      <li>Direct Communication: Connect directly with agents representing the properties you're interested in, allowing you to ask questions, schedule viewings, and receive timely responses.</li>
-      <li>Secure and Reliable: Rest easy knowing that all agents and properties on KODY are verified and vetted, providing you with a trustworthy and safe rental experience.</li>
-    </ul>
-    <section class="recent_list">
-      <h3>Most Recent Listings</h3>
+  <br>
+  <div class="hm_tenants" id="section">
+    <div class="column" id="left">
+      <img id="search_img" src="../static/images/home_search.jpg" alt="Person searching"/>
+      <p></p>
+      <p class="p_left">Searching for the perfect rental home can be time-consuming and overwhelming.At KODY, we've created a seamless platform that connects you directly with trusted agents and their exceptional rental properties. Get ready to embark on a stress-free and efficient rental journey with us!</p>
+    </div>
+    <div class="column" id="right">
+      <h3>Why Choose KODY?</h3>
+      <ul class="tick-list" id="left">
+        <li>Extensive Selection: Explore a wide range of rental properties, meticulously curated by experienced agents, ensuring you find the ideal home to suit your needs and preferences.</li>
+        <li>Instant Access: Get instant access to detailed property listings, including high-quality images, comprehensive descriptions, pricing, and availability, enabling you to make informed decisions.</li>
+        <li>Direct Communication: Connect directly with agents representing the properties you're interested in, allowing you to ask questions, schedule viewings, and receive timely responses.</li>
+        <li>Secure and Reliable: Rest easy knowing that all agents and properties on KODY are verified and vetted, providing you with a trustworthy and safe rental experience.</li>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <div class="listings" id="section">
+    <h3>Most Recent Listings</h3>
+    <div class="recent_list">
       {% for property in properties %} {% set property_images =
         files[property.id].filenames %}
         <div class="container">
@@ -129,7 +141,7 @@
           <div class="property-details">
             <div>
               <p>Agency Name: {{ files[property.id].agency_name }}</p>
-              <p>Contact: {{ files[property.id].contact }}</p>
+              <p>Contact: 0{{ files[property.id].contact }}</p>
               <b>
                 {{ property.bd }} Bedroom(s) at {{ property.name }} in {{
                 property.location }}
@@ -137,23 +149,39 @@
               </b>
             </div>
           </div>
+        </div>
       {% endfor %}
-    </section>
-  
-    <div class="agents">
-      <h2>Are You an Agent?</h2>
+    </div>
+  </div>
+  <form action="" class="home_search">
+    <button class="home_button"><a class="button" href="/properties">VIEW MORE PROPERTIES</a></button>
+  </form>
+  <h2>Are You an Agent?</h2>
+  <div class="hm_agents" id="section">
+    <div class="column" id="left">
       <h4>Unlock the Power of KODY: Amplify Your Reach, Maximize Your Success</h4>
       <p>Are you an agent searching for the perfect platform to showcase your rental properties? Look no further! KODY is here to revolutionize your renting experience. Our user-friendly interface and extensive network provides agents like you with the ultimate platform to register and showcase your available rental houses.</p>
-      <h3>Why Join KODY?</h3>
-      <ul>
+    </div>
+    <div class="column" id="right">
+      <h3 id="join">Why Join KODY?</h3>
+      <ul class="tick-list">
         <li>Expansive Exposure: Gain maximum visibility for your properties through our vast network of prospective tenants actively seeking rentals.</li>
         <li>Seamless Registration: Our hassle-free registration process allows you to quickly create a professional profile and start adding your properties within minutes.</li>
         <li>Dynamic Property Management: Effortlessly manage and update your listings, pricing, and availability, ensuring accurate and up-to-date information for potential tenants.</li>
       </ul>
+    </div>
+  </div>  
+  <div class="hm_last" id="section">
+    <div class="column" id="left">
       <h4>Join KODY today and revolutionize your rental business!</h4>
       <button class="home_button"><a class="button" href="/sign-up">CLICK HERE TO JOIN</a></button>
     </div>
+    <div class="column" id="right">
+      <h4>ABOUT US</h4>
+      <button class="home_button"><a class="button" href="/aboutUs">LEARN MORE ABOUT US</a></button>
+    </div>
   </div>
+   
 </container>
 
 {% endblock %}

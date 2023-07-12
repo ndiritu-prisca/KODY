@@ -1,13 +1,15 @@
-.edit {
+/* .edit {
     display: flex;
     justify-content: center;
     align-items: center;
-}
+} */
 
 .edit .container {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: center; */
+    padding-left: 30%;
+    padding-right: 30%;
     background-color: bisque;
     height: 100%;
     width: 100%;
@@ -20,7 +22,7 @@
     width: 50%;
     border: none;
     outline: none;
-    border-radius: 30px;
+    border-radius: 10px;
     color: #fff;
     margin: 10px;
     background-color: rgba(0, 0, 255);

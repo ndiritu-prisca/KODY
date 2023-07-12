@@ -1,6 +1,52 @@
-.container {
+.sign_box {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 75vh;
+}
+
+.sign_container {
     width: 350px;
     display: flex;
     flex-direction: column;
     padding: 0 15px 0 15px;
+    border-radius: 25%;
+    background-color: #fff;
+}
+.sign_container.top-header h3{
+    color: #070606;
+    font-weight: 700;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0 10px 0;
+}
+.input-field {
+    display: flex;
+    flex-direction: column;
+}
+.input{
+    height: 45px;
+    width: 100%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #06090a;
+    padding: 0 0 0 30px;
+    background-color: none;
+    margin: 10px;
+}
+::-webkit-input-placeholder {
+    color:#6d5b5b;
+}
+.submit {
+    height: 45px;
+    width: 80%;
+    border: none;
+    outline: none;
+    border-radius: 30px;
+    color: #fff;
+    margin: 10px;
+    margin-left: 30px;
+    background-color: rgba(0, 0, 255);
 }
