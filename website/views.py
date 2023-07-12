@@ -264,7 +264,7 @@ def edit_properties(id):
         return redirect(url_for(".profile"))
     conn = get_db_connection()
     dataobj = conn.execute('SELECT * FROM properties WHERE id = ?',
-                    (id)).fetchone()
+                    (id,)).fetchone()
     
     data = dict(zip(dataobj.keys(), dataobj))
     conn.commit()
