@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
     const bedroomsSelect = document.getElementById("bedrooms");
   
     // Get references to all property containers
-    const propertyContainers = document.querySelectorAll(".properties .container");
+    const propertyContainers = document.querySelectorAll(".properties .carousel_container");
   
     // Collect unique values for locations, prices, and agencies
     const uniqueLocations = new Set();

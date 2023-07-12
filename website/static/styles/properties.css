@@ -3,11 +3,11 @@
     width: 100%;
   }
   
-  #section {
+#section {
     background-color: #fff;
   }
   
-.properties .container #carouselExampleIndicators {
+.properties .carousel_container #carouselExampleIndicators {
     height: 350px;
     max-width: 100%;
   }
@@ -17,25 +17,26 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 10px;
-    max-width: 960px;
+    width: 100%;
+    /* max-width: 960px; */
   }
   
-  .properties .container {
+  .properties .carousel_container {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
-    width: 33.33%;
-    max-width: 300px;
+    width: 600px;
+    /* max-width: 300px; */
   }
   
-  .properties .container img {
-    width: 400px;
+  .properties .carousel_container img {
+    width: 500px;
     height: 300px;
     object-fit: cover;
   }
   
-  .properties .container .property-details {
+  .properties .carousel_container .property-details {
     margin-top: 10px;
 
     width: 100%;
