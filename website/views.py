@@ -128,12 +128,12 @@ def contactUs():
 
         mail.send(msg)
         flash('Thank you for your message. We will get back to you shortly.')
-        # try:
-        #     mail.send(msg)
-        #     flash('Thank you for your message. We will get back to you shortly.')
+        try:
+            mail.send(msg)
+            flash('Thank you for your message. We will get back to you shortly.')
 
-        # except Exception as e:
-        #     flash('An error occurred while sending the message. Please try again later.')
+        except Exception as e:
+            flash('An error occurred while sending the message. Please try again later.')
         return redirect(url_for('views.home'))
 
     return render_template("contact.html")
@@ -246,7 +246,7 @@ def upload_image(property_id):
         return redirect(url_for("views.profile"))
     return render_template("upload.html", property_id=property_id)
 
-@views.route('/profile/<id>/edit', methods=['GET', 'POST'])
+@views.route('/profile/edit/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_properties(id):
     if request.method == "POST":

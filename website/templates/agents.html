@@ -1,7 +1,10 @@
 {% extends 'base.html' %} {% block title %}Our Agents{% endblock %} {% block
 content %}
 
-<h2>Our Agents:</h2>
+<div class="top">
+  <h2>Our Agencies:</h2>
+  <input type="text" placeholder="Search.." id="search-input" />
+</div>
 
 <div class="agent-sections">
   <div class="agent-row">
@@ -19,5 +22,4 @@ content %}
     {% set counter = counter + 1 %} {% endfor %}
   </div>
 </div>
-
 {% endblock %}

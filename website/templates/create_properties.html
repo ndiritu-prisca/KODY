@@ -1,18 +1,22 @@
 {% extends 'base.html' %} {% block content %}
-<h1>Properties</h1>
-<form method="POST">
-  <label for="propertyName">Property Name:</label>
-  <input type="text" name="propertyName" id="propertyName" required />
-  <br />
-  <label for="bd">Bedroom(s):</label>
-  <input type="number" name="bd" id="bd" required />
-  <br />
-  <label for="location">Location:</label>
-  <input type="text" name="location" id="location" required />
-  <br />
-  <label for="price">Price:</label>
-  <input type="number" name="price" id="price" required />
-  <br />
-  <input type="submit" value="Add Property" />
-</form>
+<section class="edit">
+  <div class="container">
+    <h2>Add a Property</h2>
+    <form method="POST">
+      <label for="propertyName">Property Name:</label>
+      <input type="text" name="propertyName" id="propertyName" required />
+      <br />
+      <label for="bd">Bedroom(s):</label>
+      <input type="number" name="bd" id="bd" required />
+      <br />
+      <label for="location">Location:</label>
+      <input type="text" name="location" id="location" required />
+      <br />
+      <label for="price">Price:</label>
+      <input type="number" name="price" id="price" required />
+      <br />
+      <input type="submit" value="Add Property" class="submit-button" />
+    </form>
+  </div>
+</section>
 {% endblock %}

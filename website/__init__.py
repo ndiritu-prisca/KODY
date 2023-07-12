@@ -2,7 +2,6 @@ from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path, urandom
 from flask_login import LoginManager
-from flask import jsonify
 
 db = SQLAlchemy()
 DB_NAME = "database.db"
@@ -17,9 +16,11 @@ def create_app():
 
     app.config['MAIL_SERVER'] = 'smtp.mail.yahoo.com'
     app.config['MAIL_PORT'] = 587
-    app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USERNAME'] = 'kodyapp@yahoo.com'
     app.config['MAIL_PASSWORD'] = '@KDYapp1'
+    app.config['MAIL_USE_TLS'] = True
+    app.config['MAIL_USE_SSL'] = False
+
 
 
     from .views import views

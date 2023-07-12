@@ -1,36 +1,41 @@
-{% extends 'base.html' %} {% block content %}
-<h1>Properties</h1>
-<form method="POST">
-  <label for="propertyName">Property Name:</label>
-  <input
-    type="text"
-    name="propertyName"
-    id="propertyName"
-    value="{{ data.name }}"
-    required
-  />
-  <br />
-  <label for="bd">Bedroom(s):</label>
-  <input type="number" name="bd" id="bd" value="{{ data.bd }}" required />
-  <br />
-  <label for="location">Location:</label>
-  <input
-    type="text"
-    name="location"
-    id="location"
-    value="{{ data.location }}"
-    required
-  />
-  <br />
-  <label for="price">Price:</label>
-  <input
-    type="number"
-    name="price"
-    id="price"
-    value="{{ data.price }}"
-    required
-  />
-  <br />
-  <input type="submit" value="Edit Property" />
-</form>
+{% extends "base.html" %} {% block title %}Edit Properties{% endblock %} {%
+block content %}
+<section class="edit">
+  <div class="container">
+    <h1>Properties</h1>
+    <form method="POST">
+      <label for="propertyName">Property Name:</label>
+      <input
+        type="text"
+        name="propertyName"
+        id="propertyName"
+        value="{{ data.name }}"
+        required
+      />
+      <br />
+      <label for="bd">Bedroom(s):</label>
+      <input type="number" name="bd" id="bd" value="{{ data.bd }}" required />
+      <br />
+      <label for="location">Location:</label>
+      <input
+        type="text"
+        name="location"
+        id="location"
+        value="{{ data.location }}"
+        required
+      />
+      <br />
+      <label for="price">Price:</label>
+      <input
+        type="number"
+        name="price"
+        id="price"
+        value="{{ data.price }}"
+        required
+      />
+      <br />
+      <input type="submit" value="Edit Property" class="submit-button" />
+    </form>
+  </div>
+</section>
 {% endblock %}
