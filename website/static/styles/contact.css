@@ -8,16 +8,12 @@
   font-family: 'Roboto', sans-serif;
 }
 
-body {
-  background: url('../images/contact_bg.jpg') no-repeat top center;
-  height: 100vh;
-}
 .contact-container {
-  margin-left: 20%;
+  margin-left: 28%;
   margin-right: 20%;
-  /* max-width: 940px;
+  max-width: 940px;
   padding-top: 10px;
-  padding-bottom: 10px; */
+  padding-bottom: 10px;
   /* min-height: calc(100vh - 200px); */
 }
 

@@ -1,26 +1,21 @@
-/* *{
-    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-} */
-/* body {
-    background-image: url(../images/cover.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: unset;
-} */
 .box {
     display: flex;
     justify-content: center;
     align-items: center;
     min-height: 75vh;
 }
-.container {
+
+.login_container {
     width: 350px;
     display: flex;
     flex-direction: column;
     padding: 0 15px 0 15px;
+    border-radius: 25%;
+    background-color: #fff;
 }
-header{
-    color: #fff;
+
+.login_container.top-header h2{
+    color: #070606;
     font-weight: 700;
     font-size: 40px;
     display: flex;
@@ -47,11 +42,12 @@ header{
 }
 .submit {
     height: 45px;
-    width: 100%;
+    width: 80%;
     border: none;
     outline: none;
     border-radius: 30px;
     color: #fff;
     margin: 10px;
+    margin-left: 30px;
     background-color: rgba(0, 0, 255);
 }

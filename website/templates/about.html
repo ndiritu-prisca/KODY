@@ -1,13 +1,36 @@
 {% extends "base.html" %} {% block title %}About-us{% endblock %} {% block
 content %}
-<section class="hero">
-  <div class="hero-content">
-    <h1 class="hero-title">ABOUT US</h1>
-    <img class="hero-image" src="../static/images/cover.jpg" alt="About Us" />
+<section class="about">
+  <div>
+    <h1>ABOUT US</h1>
+  </div>
+</section>
+<section class="about">
+  <div class="about_sec" id="first_sec">
+    <div class="column" id="mission">
+      <h3>Our Mission:</h3>
+      <p class="mbr-text mbr-fonts-style display-4">
+        To deliver the best and simplest platform that connects tenants with agents
+      </p>
+    </div>
+    <div class="column" id="about_img">
+      <img class="hero-image" src="../static/images/agent_client2.jpg" alt="About Us" />
+    </div>
+  </div>
+</section>
+<section class="about">
+  <div class="about_sec" id="second_sec">
+    <div class="column" id="mission">
+      <h3>Our Vision:</h3>
+      <p>To trasform lives by revolutionizing Real Estate</p>
+    </div>
+    <div class="column" id="about_img">
+      <img class="hero-image" src="../static/images/agent_client3.jpg" alt="About Us" />
+    </div>
   </div>
 </section>
 <section>
-  <h3 class="features-heading">Our Key Features</h3>
+  <h3 class="features-heading">Our Values</h3>
   <div class="my_container">
     <div class="row justify-content-center mt-4">
       <div class="feature col-12 col-md-6 col-lg-4">
@@ -28,7 +51,7 @@ content %}
           </div>
           <div class="feature-box">
             <h5 class="feature-title mbr-fonts-style display-5">
-              <strong>Reliable and Convinient</strong>
+              <strong>Reliability</strong>
             </h5>
             <p class="mbr-text mbr-fonts-style display-4">
               "We are willing to go where no one has ever been before, to try
@@ -56,7 +79,7 @@ content %}
           </div>
           <div class="feature-box">
             <h5 class="feature-title mbr-fonts-style display-5">
-              <strong>No Need to Tarmack</strong>
+              <strong>Convenience</strong>
             </h5>
             <p class="mbr-text mbr-fonts-style display-4">
               "At KODY, we bring the perfect house to you. Our platform is
@@ -84,13 +107,13 @@ content %}
           </div>
           <div class="feature-box">
             <h5 class="feature-title mbr-fonts-style display-5">
-              <strong>Letting Agents Compete here</strong>
+              <strong>Efficiency</strong>
             </h5>
             <p class="mbr-text mbr-fonts-style display-4">
-              "Kody give agents a platform to advertise their vacant houses. Our
-              platform attract people from different locations who are looking
+              "Kody gives agents a platform to advertise their vacant houses. Our
+              platform attracts people from different locations who are looking
               for the best houses and apartments to make them their home. Get a
-              renters as soon as you create your listing"
+              renter as soon as you create your listing"
             </p>
           </div>
         </div>
@@ -104,6 +127,62 @@ content %}
     <a href="{{ url_for('auth.sign_up') }}" class="cta-button"
       >Create your Listing</a
     >
+  </div>
+</section>
+<section class="about">
+  <div class="inspiration">
+    <h3>Our Inspiration:</h3>
+    <p class="mbr-text mbr-fonts-style display-4">
+      From our own personal experiences, we know firsthand the arduous and time-consuming process of searching for a new home. The frustrations of unreliable agents and unresponsive websites resonates with us deeply. Determined to rewrite this story, we decided to do build KODY—a platform that transforms the renting experience for our Portifolio Project at ALX.
+    </p>
+    <p class="mbr-text mbr-fonts-style display-4">
+      At KODY, we offer an extensive selection of meticulously curated rental properties. Our experienced agents ensure that you find the ideal home that suits your needs and preferences. With instant access to detailed property listings, including high-quality images, comprehensive descriptions, pricing, and availability, you can make informed decisions.
+    </p>
+    <p class="mbr-text mbr-fonts-style display-4">
+      Direct communication is key, and KODY facilitates it effortlessly. Connect directly with agents representing the properties you're interested in, enabling you to ask questions, schedule viewings, and receive timely responses.
+    </p>      
+    <p class="mbr-text mbr-fonts-style display-4">
+      Rest easy knowing that KODY prioritizes your security and peace of mind. All agents and properties on our platform are verified and vetted, ensuring a trustworthy and safe rental experience.
+    </p>
+    <p class="mbr-text mbr-fonts-style display-4">
+      Agents, look no further! KODY is here to revolutionize your renting experience. Our user-friendly interface and extensive network provide the ultimate platform to register and showcase your available rental houses.
+    </p>
+    <p class="mbr-text mbr-fonts-style display-4">    
+      Welcome to KODY, where we rewrite the story of renting and bring joy and efficiency to your search.
+    </p>
+  </div>
+</section>
+<section class="about">
+  <div>
+    <h3>Our Team:</h3>
+  </div>
+</section>
+<section class="about">
+  <div class="about_sec" id="team">
+    <div class="column" id="mission">
+      <h3>Winfred Kiarie</h3>
+      <br>
+      <p class="mbr-text mbr-fonts-style display-4">
+        LinkedIn:
+      </p>
+      <p class="mbr-text mbr-fonts-style display-4">
+        Github:
+      </p>
+    </div>
+    <div class="column" id="mission">
+      <h3>Prisca Ndiritu</h3>
+      <br>
+      <p class="mbr-text mbr-fonts-style display-4">
+        <a href="https://www.linkedin.com/in/prisca-ndiritu-095515131/">LinkedIn</a>
+      </p>
+      <p class="mbr-text mbr-fonts-style display-4">
+        <a href="https://github.com/ndiritu-prisca">Github</a>
+      </p>
+    </div>
+</section>
+<section class="about">
+  <div class="repo">
+    <h3>Project Repository: <a href="https://github.com/ndiritu-prisca/KODY">KODY</a></h3>
   </div>
 </section>
 {% endblock %}

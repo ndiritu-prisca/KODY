@@ -75,11 +75,33 @@ content %}
             </div>
             <div class="property-details">
               <p>Agency Name: {{ files[property.id].agency_name }}</p>
-              <h3>{{ property.bd }} Bedroom(s) at {{ property.name }}</h3>
-              <p>Location: {{ property.location }}</p>
-              <p>Ksh.{{ property.price }}</p>
+              <p>Contact: 0{{ files[property.id].contact }}</p>
+              <b>
+                {{ property.bd }} Bedroom(s) at {{ property.name }} in {{
+                property.location }}
+                <p>Ksh.{{ property.price }}</p>
+              </b>
             </div>
           </div>
+
+          <!-- <a
+            class="carousel-control-prev"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+          </a>
+          <a
+            class="carousel-control-next"
+            href="#carouselExampleIndicators"
+            role="button"
+            data-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+          </a> -->
         </div>
       </div>
       {% endfor %}

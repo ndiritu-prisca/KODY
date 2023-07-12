@@ -1,39 +1,47 @@
-
-.hero {
-  position: relative;
+.about {
+  display: flex;
   width: 100%;
-  height: 100vh;
-  overflow: hidden;
+  flex-direction: column; /* Arrange elements vertically */
+  align-items: center; /* Center elements horizontally */
+  text-align: center; /* Center text within elements */
+}
+.about h1 {
+  font-weight: bold;
+}
+.about_sec {
+  display: flex;
+  flex-direction: row;
+  gap: 70px;
+}
+.about_sec p {
+  font-size: 18px;
+}
+#mission {
+  flex: 2;
+  margin: 0;
+  padding-top: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 0;
+  background-color: #fff;
+  border-radius: 10%;
+  height: 250px;
+  width: 500px;
+}
+#about_img {
+  flex: 1;
+  margin: 0;
+}
+#about_img img {
+  height: 250px;
+  width: 370px;
+  border-radius: 10%;
+}
+#mission h3 {
+  font-weight: bold;
 }
 
-.hero-image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.hero-content {
-  position: relative;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  z-index: 1;
-  color: #fff;
-  padding: 20px 20px 20px 20px;
-}
-
-.hero-title {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  font-size: 48px;
-  margin-bottom: 20px;
-  background-color:#007bff;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  transform: translate(-50%, -50%);
-}
-
+/*Our Features Section*/
 .features-heading {
   font-size: 30px;
   font-weight: bold;
@@ -45,7 +53,6 @@ section {
   padding: 50px 0;
   background-color: #f8f8f8;
 }
-
 .row.justify-content-center {
   justify-content: center;
 }
@@ -106,13 +113,38 @@ section {
   background-color: #007bff;
   border-radius: 5px;
 }
+.inspiration {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  margin: 0;
+  padding-top: 70px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-bottom: 0;
+  background-color: #fff;
+  border-radius: 10px;
+  width: 80%
+}
+.inspiration h3 {
+  text-align: center;
+  font-weight: bold;
+}
 
 /* Responsive */
 @media (max-width: 767px) {
   .feature {
     text-align: center;
   }
-  .hero-title {
-    font-size: 36px;
+  .about_sec {
+    flex-direction: column;
+  }
+  #mission {
+    margin-bottom: 20px;
+    width: 400px;
+  }
+
+  #about_img img {
+    margin-top: 20px;
   }
 }
