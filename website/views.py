@@ -126,8 +126,6 @@ def contactUs():
 
         msg.body = f"Name: {name}\nEmail: {email}\nPhone: {phone}\n\n{message}"
 
-        mail.send(msg)
-        flash('Thank you for your message. We will get back to you shortly.')
         try:
             mail.send(msg)
             flash('Thank you for your message. We will get back to you shortly.')

@@ -1,30 +1,28 @@
 {% extends 'base.html' %} {% block title %}Our Agents{% endblock %} {% block
-content %}
-
-<section>
-  <div class="top">
-    <h2>Our Agencies:</h2>
-    <input type="text" placeholder="Search.." id="search-input" />
-  </div>
-
-  <div class="agent-sections">
-    <div class="agent-row">
-      {% set counter = 0 %} {% for agent in agents %} {% if counter % 3 == 0 and
-      not loop.first %}
+  content %}
+  <section>
+    <div class="top">
+      <h2>Our Agencies:</h2>
+      <input type="text" placeholder="Search.." id="search-input" />
     </div>
-    <div class="agent-row">
-      {% endif %}
-      <div class="agent-details">
-        <h3><a href="/agent/{{ agent.id }}">{{ agent.name }}</a></h3>
-        <img
-          src="../static/uploads/{{ agent.filename }}"
-          alt="Profile Picture"
-        />
-        <p>Contact: {{ agent.contact }}</p>
-        <p>Description: {{ agent.description }}</p>
+    <div class="agent-sections">
+      <div class="agent-row">
+        {% set counter = 0 %} {% for agent in agents %} {% if counter % 3 == 0 and
+        not loop.first %}
       </div>
-      {% set counter = counter + 1 %} {% endfor %}
+      <div class="agent-row">
+        {% endif %}
+        <div class="agent-details">
+          <h3><a href="/agent/{{ agent.id }}">{{ agent.name }}</a></h3>
+          <img
+            src="../static/uploads/{{ agent.filename }}"
+            alt="Profile Picture"
+          />
+          <p>Contact: {{ agent.contact }}</p>
+          <p>Description: {{ agent.description }}</p>
+        </div>
+        {% set counter = counter + 1 %} {% endfor %}
+      </div>
     </div>
-  </div>
-</section>
-{% endblock %}
+  </section>
+  {% endblock %}

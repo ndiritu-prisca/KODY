@@ -65,7 +65,11 @@
   height: 212px;
 }
 
-::-webkit-input-placeholder {
+.input-fields ::-webkit-input-placeholder {
+  /* Chrome/Opera/Safari */
+  color: #c5ecfd;
+}
+.msg ::-webkit-input-placeholder {
   /* Chrome/Opera/Safari */
   color: #c5ecfd;
 }

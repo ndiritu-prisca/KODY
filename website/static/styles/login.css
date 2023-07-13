@@ -14,7 +14,7 @@
     background-color: #fff;
 }
 
-.login_container.top-header h2{
+.login_container .top-header h2{
     color: #070606;
     font-weight: 700;
     font-size: 40px;
