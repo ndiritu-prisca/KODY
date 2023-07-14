@@ -1,3 +1,4 @@
+""" Module handles sign up and login of user """
 from flask import Blueprint, render_template, request, flash, redirect, url_for
 import sqlite3
 from .views import get_db_connection
@@ -11,6 +12,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
+    """ Logins in the user """
     if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
@@ -44,12 +46,13 @@ def login():
 @auth.route('/logout')
 @login_required
 def logout():
+    """ Logout the user """
     logout_user()
     return redirect(url_for('views.home'))
     
 @auth.route('/sign-up', methods=['GET', 'POST'])
 def sign_up():
-    # sign up method
+    """ sign up method """
     data =request.form
     if request.method == 'POST':
         agency_name = request.form.get('agencyName')
@@ -80,6 +83,7 @@ def sign_up():
     return render_template("sign_up.html")
 
 def add_user(agency_name, email, contact, password1, password2):
+    """ Adds the user to the database """
     if len(agency_name) < 2:
         flash('Agency name must be greater than 1 characters.', category='error')
     elif len(email) < 11:
@@ -93,6 +97,7 @@ def add_user(agency_name, email, contact, password1, password2):
     else:
         password = generate_password_hash(password1, method='scrypt')
         conn = get_db_connection()
+        #create users table if not exist
         conn.execute('CREATE TABLE IF NOT EXISTS users ('
             'id INTEGER PRIMARY KEY AUTOINCREMENT,'
             'name STRING(150) UNIQUE,'
@@ -112,6 +117,7 @@ def add_user(agency_name, email, contact, password1, password2):
         row = table.fetchone() is not None
         
         if row:
+            #create properties if not exist
             conn.execute('CREATE TABLE IF NOT EXISTS properties ('
             'id INTEGER PRIMARY KEY AUTOINCREMENT,'
             'name STRING(150),'
@@ -122,6 +128,7 @@ def add_user(agency_name, email, contact, password1, password2):
             'FOREIGN KEY (user_id) REFERENCES users (id)'
             ');'
         )
+            #create images if not exist
             conn.execute('CREATE TABLE IF NOT EXISTS images ('
             'id INTEGER PRIMARY KEY AUTOINCREMENT,'
             'filename STRING(150),'
@@ -129,6 +136,7 @@ def add_user(agency_name, email, contact, password1, password2):
             'FOREIGN KEY (property_id) REFERENCES properties (id) ON DELETE CASCADE'
             ');'
         )
+            #create bios if not exist
             conn.execute('CREATE TABLE IF NOT EXISTS bios ('
             'id INTEGER PRIMARY KEY AUTOINCREMENT,'
             'filename STRING(150),'
