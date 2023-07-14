@@ -1,3 +1,4 @@
+""" Modules holds all the routes """
 from flask import Blueprint, render_template, flash, redirect, request, current_app, redirect, url_for, send_from_directory
 import sqlite3
 from flask_mail import Message, Mail
@@ -12,16 +13,19 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg', 'webp'}
 
 
 def get_db_connection():
+    """ Initializes db connection """
     conn = sqlite3.connect('database.db')
     conn.row_factory = sqlite3.Row
     return conn
 
 def allowed_file(filename):
+    """ Checks whether the image file type is among the allowed extentions """
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
 @views.route('/')
 def home():
+    """ Renders the home page """
     if request.method == "GET":
         conn = get_db_connection()
         properties = conn.execute('SELECT * FROM properties ORDER BY id DESC LIMIT 3').fetchall()
@@ -45,10 +49,12 @@ def home():
 
 @views.route('/aboutUs')
 def aboutUs():
+    """ Renders the about page """
     return render_template("about.html")
 
 @views.route('/properties', methods=['GET'])
 def properties():
+    """ Renders the properties page """
     if request.method == "GET":
         conn = get_db_connection()
         properties = conn.execute('SELECT * FROM properties').fetchall()
@@ -73,6 +79,7 @@ def properties():
 
 @views.route('/agents')
 def agents():
+    """ Renders the agents page """
     conn = get_db_connection()
     query = '''
         SELECT users.id, users.name, users.contact, bios.filename, bios.description
@@ -85,6 +92,7 @@ def agents():
 
 @views.route('/agent/<id>')
 def agent(id):
+    """ Renders the specific agent page """
     conn = get_db_connection()
     agent_properties = conn.execute('SELECT * FROM properties WHERE user_id = ?', (id,)).fetchall()
     agent = conn.execute('SELECT * FROM users WHERE id = ?', (id,)).fetchone()
@@ -107,6 +115,7 @@ def agent(id):
 
 @views.route('/contactUs', methods=['GET', 'POST'])
 def contactUs():
+    """ Renders the contact page """
 
     if request.method == 'POST':
         name = request.form['name']
@@ -140,6 +149,7 @@ def contactUs():
 @views.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
+    """ Renders the profile page once user is logged in"""
     if request.method == 'POST':
         description = request.form.get('description')
         conn = get_db_connection()
@@ -176,6 +186,7 @@ def profile():
 @views.route('/details/edit', methods=['GET', 'POST'])
 @login_required
 def edit_profile():
+    """ Handles profile editing """
     if request.method == "POST":
         agency_name = request.form.get('agencyName')
         email = request.form.get('email')
@@ -200,6 +211,7 @@ def edit_profile():
 @views.route('/profile/create', methods=['GET', 'POST'])
 @login_required
 def add_properties():
+    """ Handles addition of properties page"""
     if request.method == "POST":
         name = request.form.get('propertyName')
         bd = request.form.get('bd')
@@ -220,6 +232,7 @@ def add_properties():
 
 @views.route('/upload/<property_id>', methods=['GET', 'POST'])
 def upload_image(property_id):
+    """ Handles property's images upload page """
     if request.method == 'POST':
         if 'images[]' not in request.files:
             flash("No image(s) uploaded. Image must be 'png', 'jpg', or 'jpeg'")
@@ -247,6 +260,7 @@ def upload_image(property_id):
 @views.route('/profile/edit/<id>', methods=['GET', 'POST'])
 @login_required
 def edit_properties(id):
+    """ Handles property editing """
     if request.method == "POST":
         name = request.form.get('propertyName')
         bd = request.form.get('bd')
@@ -272,6 +286,7 @@ def edit_properties(id):
 @views.route('/profile/<id>/delete', methods=['GET', 'POST'])
 @login_required
 def delete_properties(id):
+    """ Handles deletion of property """
     conn = get_db_connection()
     conn.execute('DELETE FROM properties WHERE id = ?',
                     (id,))
@@ -284,6 +299,7 @@ def delete_properties(id):
 @views.route('/upload_pic/<id>', methods=['GET', 'POST'])
 @login_required
 def upload_pic(id):
+    """ Handles profile picture upload """
     if request.method == 'POST':
         if 'image' not in request.files:
             flash("No image uploaded. Image must be 'png', 'jpg', or 'jpeg'")
