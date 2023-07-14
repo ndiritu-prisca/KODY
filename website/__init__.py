@@ -1,3 +1,4 @@
+""" Module handles app initialization """
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
 from os import path, urandom
@@ -8,20 +9,19 @@ DB_NAME = "database.db"
 UPLOAD_FOLDER = 'website/static/uploads/'
 
 def create_app():
+    """ Creates the app """
     app = Flask(__name__)
     app.config['SECRET_KEY'] = urandom(24)
     app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///{}'.format(DB_NAME)
     app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
     db.init_app(app)
 
-    app.config['MAIL_SERVER'] = 'smtp.mail.yahoo.com'
+    app.config['MAIL_SERVER'] = 'smtp.mail.yahoo.com' #app config for flask mail implementation
     app.config['MAIL_PORT'] = 587
     app.config['MAIL_USERNAME'] = 'kodyapp@yahoo.com'
     app.config['MAIL_PASSWORD'] = '@KDYapp1'
     app.config['MAIL_USE_TLS'] = True
     app.config['MAIL_USE_SSL'] = False
-
-
 
     from .views import views
     from .auth import auth
@@ -40,9 +40,9 @@ def create_app():
     from .views import get_db_connection
     @login.user_loader
     def load_user(user_id):
+        """ Loads the user """
         userId = int(user_id)
-        #user = User.query.get(userId)
-        conn = get_db_connection()
+        conn = get_db_connection() #Connecting to the db
         user = conn.execute('SELECT * FROM users WHERE id = ?', (user_id,))
         row = user.fetchone()
         if row is None:
