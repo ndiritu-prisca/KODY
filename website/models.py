@@ -1,9 +1,16 @@
+""" module handles the data models """
 from . import db
 from flask_login import UserMixin
 import json
 
 
 class User(db.Model, UserMixin):
+    """ 
+    User class inherit from db.Model and UserMixin
+    db.Model allow connection with the db
+    UserMixin allow implementation of flask_login 
+    """
+    
     __tablename__ = 'users' 
 
     id = db.Column(db.Integer, primary_key=True)
@@ -15,43 +22,29 @@ class User(db.Model, UserMixin):
     bios = db.relationship('Bio')
 
     def get_id(self):
+        """ 
+        Method gets the user id
+        args:
+            self
+        return (str):
+            user id
+        """
         return str(self.id)
 
     def is_active(self):
+        """ Check user is loaded """
         return True
 
     def is_authenticated(self):
+        """ check user is authenticated """
         return True
 
     def is_anonymous(self):
+        """ restrict login """
         return False
 
-    def to_json(self):
-        return {
-            'id': self.id,
-            'name': self.name,
-            'email': self.email,
-            'contact': self.contact,
-            'password': self.password
-        }
-
-    def __str__(self):
-        return json.dumps(self.to_json())
-
-    @classmethod
-    def from_json(cls, json_data):
-        user_data = json.loads(json_data)
-        user = cls()
-        user.id = user_data['id']
-        user.name = user_data['name']
-        user.email = user_data['email']
-        user.contact = user_data['contact']
-        user.password = user_data['password']
-        return user
-
-
-
 class Property(db.Model, UserMixin):
+    """ representation of Property model """
     __tablename__ = 'properties' 
 
     id = db.Column(db.Integer, primary_key=True)
@@ -63,6 +56,7 @@ class Property(db.Model, UserMixin):
     images = db.relationship('Image', backref='property', cascade='all, delete')
 
     def __init__(self, name, bd, location, user_id, images):
+        """ Initializes property """
         self.name = name
         self.bd = bd
         self.location = location
@@ -70,6 +64,7 @@ class Property(db.Model, UserMixin):
         self.images = images
     
 class Image(db.Model, UserMixin):
+    """ Representation of Image model """
     __tablename__ = 'images'
 
     id = db.Column(db.Integer, primary_key=True)
@@ -77,6 +72,7 @@ class Image(db.Model, UserMixin):
     property_id = db.Column(db.Integer, db.ForeignKey('properties.id'))
 
 class Bio(db.Model, UserMixin):
+    """ Representations of Bio model """
     __tablename__ = 'bios'
 
     id = db.Column(db.Integer, primary_key=True)
